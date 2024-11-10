@@ -11,8 +11,6 @@ import cz.coffee.rpggame.models.Hero;
 import javax.swing.*;
 import java.awt.*;
 
-import static cz.coffee.rpggame.services.GameEngine.getHero;
-
 public class Board extends JComponent implements Changeable {
     private final FPSCounter fpsCounter;
     private final StartScreen startScreen;
@@ -70,9 +68,9 @@ public class Board extends JComponent implements Changeable {
         fpsCounter.paintComponent(graphics);
         fpsCounter.incrementFrames();
 
-        if (getHero() != null) {
-            var location = getHero().getLocation();
-            System.out.println("[Board] Repainting board with hero: " + getHero().getUuid()  + " at: " + location.getX() + ", " + location.getY() + ", dir: " + getHero().getDirection());
+        if (GameEngine.getHero() != null) {
+            var location = GameEngine.getHero().getLocation();
+            System.out.println("[Board] Repainting board with hero: " + GameEngine.getHero().getUuid()  + " at: " + location.getX() + ", " + location.getY() + ", dir: " + GameEngine.getHero().getDirection());
         }
     }
 

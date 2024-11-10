@@ -11,7 +11,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import static cz.coffee.rpggame.GameConfig.TILE_SIZE;
-import static cz.coffee.rpggame.services.GameEngine.getHero;
 import static java.awt.event.KeyEvent.*;
 
 public class GameKeyEvents implements KeyListener {
@@ -36,7 +35,7 @@ public class GameKeyEvents implements KeyListener {
         if (engine.state.equals(GameState.RUNNING) || engine.state.equals(GameState.PLAYING)) {
 
             var bState = board.state;
-            var hero = getHero();
+            var hero = GameEngine.getHero();
             var ts = TILE_SIZE;
 
             var x = hero.getLocation().getX();

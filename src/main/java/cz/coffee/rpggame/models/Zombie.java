@@ -1,5 +1,8 @@
 package cz.coffee.rpggame.models;
 
+import cz.coffee.rpggame.utils.GameClass;
+
+@GameClass
 public class Zombie extends Monster {
     public Zombie() {
         super();

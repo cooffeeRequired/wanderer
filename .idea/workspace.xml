@@ -5,43 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ec11351-e43f-404a-963e-0512b8be69bf" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/utils/Location.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/utils/GameClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/utils/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/controllers/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Boss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/GameEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/GameEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Hero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Monster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Skeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Skeleton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Zombie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/Board.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/Boss.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/Character.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/Door.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/FinalDoor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/Floor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/Hero.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/MapObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/Monster.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/PositionedImage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/Shield.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/Skeleton.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/SkeletonWithKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/Sword.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/Zombie.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/ZombieEgg.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/potionGreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/nthe/potionRed.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/GameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/GameEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/GameKeyEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/GameKeyEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/structures/GameStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/structures/GameStructure.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731176241873</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="init">
+      <option name="closed" value="true" />
+      <created>1731235674989</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731235674989</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

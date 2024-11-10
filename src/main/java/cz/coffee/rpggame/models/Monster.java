@@ -65,11 +65,11 @@ public class Monster extends GameEntity implements DefaultEntity {
             if (direction == 0) {
                 nextY = location.getY() + GameConfig.TILE_SIZE; // down
             } else if (direction == 1) {
-                nextY = location.getY()  - GameConfig.TILE_SIZE;; // up
+                nextY = location.getY()  - GameConfig.TILE_SIZE;// up
             } else if (direction == 2) {
-                nextX = location.getX()  - GameConfig.TILE_SIZE;; // left
+                nextX = location.getX()  - GameConfig.TILE_SIZE;// left
             } else if (direction == 3) {
-                nextX = location.getX()  + GameConfig.TILE_SIZE;; // right
+                nextX = location.getX()  + GameConfig.TILE_SIZE;// right
             }
 
             int row = nextY / tileSize;

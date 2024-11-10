@@ -1,14 +1,13 @@
 package cz.coffee.rpggame.controllers;
 
 import cz.coffee.rpggame.models.Hero;
+import cz.coffee.rpggame.services.GameEngine;
 import cz.coffee.rpggame.structures.Floor;
 import cz.coffee.rpggame.utils.GameObject;
 import cz.coffee.rpggame.utils.PositionedImage;
 import lombok.Getter;
 
 import java.awt.*;
-
-import static cz.coffee.rpggame.services.GameEngine.getHero;
 
 public class GameController {
 
@@ -45,7 +44,7 @@ public class GameController {
             ).draw(g);
         });
 
-       new PositionedImage(getHero().getDirection(), getHero().getLocation().getX(), getHero().getLocation().getY(), true).draw(g);
+       new PositionedImage(GameEngine.getHero().getDirection(), GameEngine.getHero().getLocation().getX(), GameEngine.getHero().getLocation().getY(), true).draw(g);
 
 
     }
