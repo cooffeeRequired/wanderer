@@ -7,6 +7,7 @@ import cz.coffee.rpggame.components.StartScreen;
 import cz.coffee.rpggame.controllers.GameController;
 import cz.coffee.rpggame.enums.GameState;
 import cz.coffee.rpggame.models.Hero;
+import cz.coffee.rpggame.utils.Location;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,9 +18,12 @@ public class Board extends JComponent implements Changeable {
     private final DialogScreen dialogScreen;
     public GameState state;
 
-/*    public static int heroX = 0;
-    public static int heroY = 0;
-    public static String heroDir = "img/hero-down.png";*/
+    public static Location location = new Location(0, 0);
+    public static String heroDirection = "img/hero-down.png";
+
+///*    public static int heroX = 0;
+//    public static int heroY = 0;
+//    public static String heroDir = "img/hero-down.png";*/
 
     public static int LEVEL_MAP = 1;
 
@@ -69,8 +73,7 @@ public class Board extends JComponent implements Changeable {
         fpsCounter.incrementFrames();
 
         if (GameEngine.getHero() != null) {
-            var location = GameEngine.getHero().getLocation();
-            System.out.println("[Board] Repainting board with hero: " + GameEngine.getHero().getUuid()  + " at: " + location.getX() + ", " + location.getY() + ", dir: " + GameEngine.getHero().getDirection());
+            System.out.println("[Board] Repainting board with hero: " + GameEngine.getHero().getUuid()  + " at: " + location.getX() + ", " + location.getY() + ", dir: " + heroDirection);
         }
     }
 

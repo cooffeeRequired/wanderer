@@ -43,25 +43,29 @@ public class GameKeyEvents implements KeyListener {
 
             switch (e.getKeyCode()) {
                 case VK_UP: {
-                    hero.setDirection("img/hero-up.png");
+                    Board.heroDirection = "img/hero-up.png";
+                    //hero.setDirection("img/hero-up.png");
                     var moveToLocation = new Location(x, y - ts);
                     this.move(hero, moveToLocation);
                     break;
                 }
                 case VK_DOWN: {
-                    hero.setDirection("img/hero-down.png");
+                    Board.heroDirection = "img/hero-down.png";
+                    //hero.setDirection("img/hero-down.png");
                     var moveToLocation = new Location(x, y + ts);
                     this.move(hero, moveToLocation);
                     break;
                 }
                 case VK_LEFT: {
-                    hero.setDirection("img/hero-left.png");
+                    Board.heroDirection = "img/hero-left.png";
+                    //hero.setDirection("img/hero-left.png");
                     var moveToLocation = new Location(x - ts, y);
                     this.move(hero, moveToLocation);
                     break;
                 }
                 case VK_RIGHT: {
-                    hero.setDirection("img/hero-right.png");
+                    Board.heroDirection = "img/hero-right.png";
+                    //hero.setDirection("img/hero-right.png");
                     var moveToLocation = new Location(x + ts, y);
                     this.move(hero, moveToLocation);
                     break;
@@ -85,14 +89,14 @@ public class GameKeyEvents implements KeyListener {
         var x = moveToLocation.getX();
         var y = moveToLocation.getY();
 
-        boolean canMoveThere = canMoveThere(x, y, hero.getLocation());
+        boolean canMoveThere = canMoveThere(x, y, Board.location);
         if (canMoveThere) {
             hero.getLocation().setX(x);
             hero.getLocation().setY(y);
 
             board.repaint();
 
-            System.out.println("\u001B[33m[GameKeyEvents] Drawing hero: " + hero.getUuid() + " at: " + hero.getLocation().getX() + ", " + hero.getLocation().getY() + "\u001B[0m");
+            System.out.println("\u001B[33m[GameKeyEvents] Drawing hero: " + hero.getUuid() + " at: " + Board.location.getX() + ", " + Board.location.getY() + "\u001B[0m");
         } else {
             System.out.println("\u001B[33m[GameKeyEvents] Drawing hero: " + hero.getUuid() + " at: ! Cannot move there\u001B[0m");
         }

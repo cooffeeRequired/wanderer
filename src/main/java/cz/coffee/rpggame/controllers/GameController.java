@@ -1,7 +1,7 @@
 package cz.coffee.rpggame.controllers;
 
 import cz.coffee.rpggame.models.Hero;
-import cz.coffee.rpggame.services.GameEngine;
+import cz.coffee.rpggame.services.Board;
 import cz.coffee.rpggame.structures.Floor;
 import cz.coffee.rpggame.utils.GameObject;
 import cz.coffee.rpggame.utils.PositionedImage;
@@ -44,7 +44,7 @@ public class GameController {
             ).draw(g);
         });
 
-       new PositionedImage(GameEngine.getHero().getDirection(), GameEngine.getHero().getLocation().getX(), GameEngine.getHero().getLocation().getY(), true).draw(g);
+       new PositionedImage(Board.heroDirection, Board.location.getX(), Board.location.getY(), true).draw(g);
 
 
     }
