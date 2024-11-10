@@ -49,17 +49,13 @@ public class MovementHandler {
         int heroX = location.getX();
         int heroY = location.getY();
 
-        if (x == heroX && y == heroY) {
-            return false;
+        if (x == heroX && y == heroY) return false;
+
+        if (Floor.wallMatrix(Board.LEVEL_MAP).length >= colm && Floor.wallMatrix(Board.LEVEL_MAP)[colm].length >= row) {
+            return Floor.wallMatrix(Board.LEVEL_MAP)[colm][row];
         }
 
-        try {
-            if (Floor.wallMatrix(Board.LEVEL_MAP)[colm][row]) {
-                return false;
-            }
-        } catch (Exception e) {
-            return false;
-        }
+
 
         for (Monster monster : GameController.getEntities().getMonsters()) {
             if (monster.getLocation().getX() == x && monster.getLocation().getY() == y) {
