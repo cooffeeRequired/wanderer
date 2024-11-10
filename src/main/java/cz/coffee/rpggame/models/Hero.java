@@ -17,6 +17,7 @@ public class Hero extends GameEntity implements Leveling, CouldPotions, CouldIte
         setDp(2 * randInt());
         setSp(5* randInt());
         setLocation(0, 0);
+        setDirection("img/hero-down.png");
     }
 
     @Override

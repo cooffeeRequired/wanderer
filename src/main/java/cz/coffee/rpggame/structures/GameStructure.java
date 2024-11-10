@@ -28,7 +28,7 @@ public class GameStructure implements DefaultEntity {
             int posX = randomX * tileSize;
             int posY = randomY * tileSize;
 
-            if (!isWall(posX, posY) && !isHero(posX, posY)) {
+            if (isWall(posX, posY) && !isHero(posX, posY)) {
                 x = posX;
                 y = posY;
                 break;
@@ -44,8 +44,8 @@ public class GameStructure implements DefaultEntity {
     public boolean isWall(int x, int y) {
         int row = y / tileSize;
         int col = x / tileSize;
-        return row >= 0 && row < numTiles && col >= 0 && col < numTiles
-                && Floor.wallMatrix(Board.LEVEL_MAP)[col][row];
+        return row < 0 || row >= numTiles || col < 0 || col >= numTiles
+                || !Floor.wallMatrix(Board.LEVEL_MAP)[col][row];
     }
     @Override
     public boolean isHero(int x, int y) {

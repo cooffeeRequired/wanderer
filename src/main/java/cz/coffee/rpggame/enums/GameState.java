@@ -13,6 +13,7 @@ public enum GameState {
     NEW_GAME("new_game", (byte) 0xf2),
     PLAYING("playing", (byte) 0xf03),
     INSTR("instructions", (byte) 0xf3),
+    INITIALIZED("initialized", (byte) 0xf9),
     UNKNOWN("unknown", (byte) 0x00);
 
     final String stateText;

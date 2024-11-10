@@ -7,7 +7,6 @@ import cz.coffee.rpggame.components.StartScreen;
 import cz.coffee.rpggame.controllers.GameController;
 import cz.coffee.rpggame.enums.GameState;
 import cz.coffee.rpggame.models.Hero;
-import cz.coffee.rpggame.utils.Location;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,14 +15,8 @@ public class Board extends JComponent implements Changeable {
     private final FPSCounter fpsCounter;
     private final StartScreen startScreen;
     private final DialogScreen dialogScreen;
+
     public GameState state;
-
-    public static Location location = new Location(0, 0);
-    public static String heroDirection = "img/hero-down.png";
-
-///*    public static int heroX = 0;
-//    public static int heroY = 0;
-//    public static String heroDir = "img/hero-down.png";*/
 
     public static int LEVEL_MAP = 1;
 
@@ -43,12 +36,16 @@ public class Board extends JComponent implements Changeable {
 
     @Override
     protected void paintComponent(Graphics graphics) {
+        System.out.println("GAME_STATE: " + state);
+
         super.paintComponent(graphics);
 
-        if (state == GameState.START || state == GameState.NEW_GAME) {
-            startScreen.paintComponent(graphics);
-        } else if (state == GameState.INSTR) {
-            dialogScreen.drawWithText(graphics, "INSTRUKCE:\n" +
+        switch (state) {
+            case NEW_GAME -> {
+                startScreen.paintComponent(graphics);
+            }
+            case INSTR -> //noinspection TextBlockMigration
+                    dialogScreen.drawWithText(graphics, "INSTRUKCE:\n" +
                     "Pohybujte hrdinou pomocí šipek." +
                     "Když narazíte na příšeru, začne bitva. Uvidíte červený obdélník kolem vašeho hrdiny." +
                     "Útočte pomocí mezerníku. Nepřátelé vrátí úder, ale nikdy nezaútočí jako první." +
@@ -57,23 +54,24 @@ public class Board extends JComponent implements Changeable {
                     "HP = Body zdraví\n" +
                     "DP = Body obrany\n" +
                     "SP = Body útoku");
-        } else if (state == GameState.PLAYING) {
-            controller.startGame(graphics, GameConfig.TILES, GameConfig.TILE_SIZE);
-
-            /*
-                TODO HighestScore...
-                TODO You Win...
-                TODO You Lose...
-            */
-
-
+            case INITIALIZED -> {
+                controller.startGame(graphics);
+                state = GameState.PLAYING;
+            }
+            case PLAYING -> controller.play(graphics);
 
         }
-        fpsCounter.paintComponent(graphics);
-        fpsCounter.incrementFrames();
+        /*
+            TODO !
+                fpsCounter.paintComponent(graphics);
+                fpsCounter.incrementFrames();
+         */
 
         if (GameEngine.getHero() != null) {
-            System.out.println("[Board] Repainting board with hero: " + GameEngine.getHero().getUuid()  + " at: " + location.getX() + ", " + location.getY() + ", dir: " + heroDirection);
+
+            var location = GameEngine.getHero().getLocation();
+
+            System.out.println("[Board] Repainting board with hero: " + GameEngine.getHero().getUuid()  + " at: " + location.getX() + ", " + location.getY() + ", dir: " + GameEngine.getHero().getDirection());
         }
     }
 

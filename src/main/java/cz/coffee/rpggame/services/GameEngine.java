@@ -8,17 +8,15 @@ import lombok.Getter;
 import javax.swing.*;
 
 public class GameEngine {
-    public GameState state = GameState.STOPPED;
-
     @Getter private static Hero hero;
     @Getter private static Board board;
     @Getter private static GameEngine engine;
 
     public void run() {
-        state = GameState.RUNNING;
-
         hero = new Hero();
         board = new Board(new FPSCounter(), hero);
+
+        board.changeState(GameState.RUNNING);
 
         JFrame frame = new JFrame("Wanderer RPG");
         frame.add(board);
@@ -26,14 +24,14 @@ public class GameEngine {
         frame.setResizable(false);
         frame.setVisible(true);
         frame.pack();
-        frame.addKeyListener(new GameKeyEvents(this, board));
+        frame.addKeyListener(new GameKeyEvents(this, board, hero));
 
-        board.changeState(GameState.START);
+        board.changeState(GameState.NEW_GAME);
     }
 
     public void stop() {
-        if (state.equals(GameState.RUNNING)) {
-            state = GameState.STOPPED;
+        if (board.state.equals(GameState.RUNNING)) {
+            board.changeState(GameState.STOPPED);
         }
     }
 }

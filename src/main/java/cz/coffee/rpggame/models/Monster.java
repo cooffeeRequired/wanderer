@@ -4,7 +4,9 @@ import cz.coffee.rpggame.GameConfig;
 import cz.coffee.rpggame.models.patterns.DefaultEntity;
 import cz.coffee.rpggame.services.Board;
 import cz.coffee.rpggame.structures.Floor;
+import cz.coffee.rpggame.utils.GameClass;
 
+@GameClass
 public class Monster extends GameEntity implements DefaultEntity {
     public String img;
     int mIndex;
@@ -22,7 +24,7 @@ public class Monster extends GameEntity implements DefaultEntity {
             int PosX = randomX * tileSize;
             int PosY = randomY * tileSize;
 
-            if (!isWall(PosX, PosY) && !isHero(PosX, PosY)) {
+            if (isWall(PosX, PosY) && !isHero(PosX, PosY)) {
                 x = PosX;
                 y = PosY;
                 break;
@@ -36,7 +38,7 @@ public class Monster extends GameEntity implements DefaultEntity {
     public boolean isWall(int x, int y) {
         int row = y / tileSize;
         int col = x / tileSize;
-        return row >= 0 && row < tiles && col >= 0 && col < tiles && Floor.wallMatrix(Board.LEVEL_MAP)[col][row];
+        return row < 0 || row >= tiles || col < 0 || col >= tiles || !Floor.wallMatrix(Board.LEVEL_MAP)[col][row];
     }
 
 
