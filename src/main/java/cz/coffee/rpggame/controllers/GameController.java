@@ -1,6 +1,10 @@
 package cz.coffee.rpggame.controllers;
 
 import cz.coffee.rpggame.GameConfig;
+import cz.coffee.rpggame.items.PotionGreen;
+import cz.coffee.rpggame.items.PotionRed;
+import cz.coffee.rpggame.items.Shield;
+import cz.coffee.rpggame.items.Sword;
 import cz.coffee.rpggame.models.*;
 import cz.coffee.rpggame.structures.*;
 import cz.coffee.rpggame.utils.GameObject;
@@ -30,23 +34,19 @@ public class GameController {
         Floor.drawWalls(g, GameConfig.TILES, GameConfig.TILE_SIZE);
 
 
-        entities.getMonsters().forEach(monster -> {
-            new PositionedImage(
-                    monster.img,
-                    monster.getLocation().getX(),
-                    monster.getLocation().getY(),
-                    true
-            ).draw(g);
-        });
+        entities.getMonsters().forEach(monster -> new PositionedImage(
+                monster.img,
+                monster.getLocation().getX(),
+                monster.getLocation().getY(),
+                true
+        ).draw(g));
 
-        structures.getStructures().forEach(structure -> {
-            new PositionedImage(
-                    structure.getImg(),
-                    structure.getX(),
-                    structure.getY(),
-                    true
-            ).draw(g);
-        });
+        structures.getStructures().forEach(structure -> new PositionedImage(
+                structure.getImg(),
+                structure.getX(),
+                structure.getY(),
+                true
+        ).draw(g));
 
         var location = hero.getLocation();
         new PositionedImage(hero.getDirection(), location.getX(), location.getY(), true).draw(g);

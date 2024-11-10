@@ -1,6 +1,10 @@
 package cz.coffee.rpggame.handlers.hero;
 
 import cz.coffee.rpggame.controllers.GameController;
+import cz.coffee.rpggame.items.PotionGreen;
+import cz.coffee.rpggame.items.PotionRed;
+import cz.coffee.rpggame.items.Shield;
+import cz.coffee.rpggame.items.Sword;
 import cz.coffee.rpggame.models.Boss;
 import cz.coffee.rpggame.models.GameEntity;
 import cz.coffee.rpggame.models.Hero;
@@ -9,9 +13,12 @@ import cz.coffee.rpggame.services.Board;
 import cz.coffee.rpggame.structures.*;
 import cz.coffee.rpggame.utils.Location;
 
+
 import static cz.coffee.rpggame.GameConfig.TILE_SIZE;
 
+@SuppressWarnings("all")
 public class MovementHandler {
+
 
     private final Board board;
     private final EntityHandler entityHandler;
@@ -51,7 +58,6 @@ public class MovementHandler {
 
         if (x == heroX && y == heroY) return false;
         if (Floor.wallMatrix(Board.LEVEL_MAP)[colm][row]) return false;
-
 
 
         // ** THat need to be handled by HandlerEntity

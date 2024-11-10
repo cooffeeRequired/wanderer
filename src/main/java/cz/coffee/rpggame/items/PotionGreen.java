@@ -1,11 +1,12 @@
-package cz.coffee.rpggame.structures;
+package cz.coffee.rpggame.items;
 
+import cz.coffee.rpggame.structures.GameStructure;
 import cz.coffee.rpggame.utils.GameClass;
 
 @GameClass
 public class PotionGreen extends GameStructure {
     public PotionGreen() {
-        img = "img/potionGreen.png";
+        setImg("img/potionGreen.png");
     }
 }
 

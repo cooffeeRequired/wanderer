@@ -7,4 +7,14 @@ public class EntityHandler implements Handler<GameEntity> {
     public void handle(GameEntity entity) {
 
     }
+
+    @Override
+    public void dispatchTo(GameEntity b) {
+
+    }
+
+    @Override
+    public void mountTo(GameEntity b) {
+
+    }
 }

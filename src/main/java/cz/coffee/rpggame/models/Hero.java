@@ -4,7 +4,6 @@ package cz.coffee.rpggame.models;
 import cz.coffee.rpggame.models.patterns.CouldItems;
 import cz.coffee.rpggame.models.patterns.CouldPotions;
 import cz.coffee.rpggame.models.patterns.Leveling;
-import cz.coffee.rpggame.utils.Location;
 
 public class Hero extends GameEntity implements Leveling, CouldPotions, CouldItems {
 
@@ -16,7 +15,6 @@ public class Hero extends GameEntity implements Leveling, CouldPotions, CouldIte
         setCurrentHP(getMaxHP());
         setDp(2 * randInt());
         setSp(5* randInt());
-        setLocation(0, 0);
         setDirection("img/hero-down.png");
     }
 
@@ -68,7 +66,6 @@ public class Hero extends GameEntity implements Leveling, CouldPotions, CouldIte
     }
 
     public void initialize() {
-        setLocation(new Location(0, 0));
         this.levelUp();
     }
 
