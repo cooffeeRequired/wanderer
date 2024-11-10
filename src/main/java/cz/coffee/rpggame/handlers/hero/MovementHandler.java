@@ -50,12 +50,11 @@ public class MovementHandler {
         int heroY = location.getY();
 
         if (x == heroX && y == heroY) return false;
-
-        if (Floor.wallMatrix(Board.LEVEL_MAP).length >= colm && Floor.wallMatrix(Board.LEVEL_MAP)[colm].length >= row) {
-            return Floor.wallMatrix(Board.LEVEL_MAP)[colm][row];
-        }
+        if (Floor.wallMatrix(Board.LEVEL_MAP)[colm][row]) return false;
 
 
+
+        // ** THat need to be handled by HandlerEntity
 
         for (Monster monster : GameController.getEntities().getMonsters()) {
             if (monster.getLocation().getX() == x && monster.getLocation().getY() == y) {
@@ -68,6 +67,8 @@ public class MovementHandler {
                 return false;
             }
         }
+
+        // ** THat need to be handled by ItemHandler & AttributeHandler
 
         if (entity instanceof Hero hero ) {
             for (GameStructure mapObject : GameController.getStructures().getStructures()) {
