@@ -3,12 +3,9 @@ package cz.coffee.rpggame.models;
 import cz.coffee.rpggame.GameConfig;
 import cz.coffee.rpggame.models.patterns.DefaultEntity;
 import cz.coffee.rpggame.services.Board;
-import cz.coffee.rpggame.services.GameEngine;
 import cz.coffee.rpggame.structures.Floor;
 
 public class Monster extends GameEntity implements DefaultEntity {
-    private int x;
-    private int y;
     public String img;
     int mIndex;
 
@@ -20,8 +17,8 @@ public class Monster extends GameEntity implements DefaultEntity {
         int x;
         int y;
         do {
-            int randomX = this.rand.nextInt(tiles);
-            int randomY = this.rand.nextInt(tiles);
+            int randomX = rand.nextInt(tiles);
+            int randomY = rand.nextInt(tiles);
             int PosX = randomX * tileSize;
             int PosY = randomY * tileSize;
 
@@ -32,8 +29,7 @@ public class Monster extends GameEntity implements DefaultEntity {
             }
         } while (true);
 
-        PosX = x;
-        PosY = y;
+        getLocation().setLocation(x, y);
     }
 
     @Override
@@ -43,26 +39,16 @@ public class Monster extends GameEntity implements DefaultEntity {
         return row >= 0 && row < tiles && col >= 0 && col < tiles && Floor.wallMatrix(Board.LEVEL_MAP)[col][row];
     }
 
-    @Override
-    public boolean isHero(int x, int y) {
-        Hero hero = GameEngine.board.getHero();
-
-        int heroTileX = hero.PosX/ tileSize;
-        int heroTileY = hero.PosY / tileSize;
-        int tileX = x / tileSize;
-        int tileY = y / tileSize;
-        return heroTileX == tileX && heroTileY == tileY;
-    }
 
     public void setMonsterIndex() {
         int i = rand.nextInt(10) + 1;
 
         if (i == 1) {
-            mIndex = level + 2;
+            mIndex = getLevel() + 2;
         } else if (i <= 5) {
-            mIndex = level + 1;
+            mIndex = getLevel() + 1;
         } else {
-            mIndex = level;
+            mIndex = getLevel();
         }
     }
 
@@ -70,25 +56,26 @@ public class Monster extends GameEntity implements DefaultEntity {
     public void moveRandomOneTile(int x, int y) {
         do {
 
-            int nextX = getPosX();
-            int nextY = getPosY();
+            int nextX = getLocation().getX();
+            int nextY = getLocation().getY();
             int direction = randomDir();
 
+            var location = getLocation();
+
             if (direction == 0) {
-                nextY = this.PosY + GameConfig.TILE_SIZE; // down
+                nextY = location.getY() + GameConfig.TILE_SIZE; // down
             } else if (direction == 1) {
-                nextY = PosY - GameConfig.TILE_SIZE;; // up
+                nextY = location.getY()  - GameConfig.TILE_SIZE;; // up
             } else if (direction == 2) {
-                nextX = PosX - GameConfig.TILE_SIZE;; // left
+                nextX = location.getX()  - GameConfig.TILE_SIZE;; // left
             } else if (direction == 3) {
-                nextX = PosX + GameConfig.TILE_SIZE;; // right
+                nextX = location.getX()  + GameConfig.TILE_SIZE;; // right
             }
 
             int row = nextY / tileSize;
             int col = nextX / tileSize;
             if (row >= 0 && row < GameConfig.TILES && col >= 0 && col < GameConfig.TILES && !Floor.wallMatrix(Board.LEVEL_MAP)[col][row]) {
-                this.PosX = nextX;
-                this.PosY = nextY;
+                getLocation().setLocation(nextX, nextY);
                 break;
             }
         } while (true);

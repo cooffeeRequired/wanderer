@@ -49,10 +49,10 @@ public class GameStructure implements DefaultEntity {
     }
     @Override
     public boolean isHero(int x, int y) {
-        Hero hero = GameEngine.board.getHero();
+        Hero hero = GameEngine.getHero();
 
-        int heroTileX = hero.getPosX() / tileSize;
-        int heroTileY = hero.getPosY() / tileSize;
+        int heroTileX = hero.getLocation().getX() / tileSize;
+        int heroTileY = hero.getLocation().getY()  / tileSize;
         int tileX = x / tileSize;
         int tileY = y / tileSize;
         return heroTileX == tileX && heroTileY == tileY;

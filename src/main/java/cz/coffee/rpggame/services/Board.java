@@ -8,10 +8,10 @@ import cz.coffee.rpggame.controllers.GameController;
 import cz.coffee.rpggame.enums.GameState;
 import cz.coffee.rpggame.models.Hero;
 
-import lombok.Getter;
-
 import javax.swing.*;
 import java.awt.*;
+
+import static cz.coffee.rpggame.services.GameEngine.getHero;
 
 public class Board extends JComponent implements Changeable {
     private final FPSCounter fpsCounter;
@@ -19,25 +19,18 @@ public class Board extends JComponent implements Changeable {
     private final DialogScreen dialogScreen;
     public GameState state;
 
-    public static int heroX = 0;
+/*    public static int heroX = 0;
     public static int heroY = 0;
-    public static String heroDir = "img/hero-down.png";
-
-    @Override
-    public String toString() {
-        return "Board{state=" + state + '}';
-    }
+    public static String heroDir = "img/hero-down.png";*/
 
     public static int LEVEL_MAP = 1;
-
-    @Getter private Hero hero;
 
     private final GameController controller;
 
     public Board(FPSCounter fpsCounter, Hero hero) {
         this.fpsCounter = fpsCounter;
-        this.hero = hero;
-        this.controller = new GameController(hero); // Inicializace controlleru
+        this.controller = new GameController(hero);
+
         this.startScreen = new StartScreen();
         this.dialogScreen = new DialogScreen();
         setPreferredSize(new Dimension(GameConfig.GAME_WINDOW_WIDTH, GameConfig.GAME_WINDOW_HEIGHT));
@@ -77,8 +70,9 @@ public class Board extends JComponent implements Changeable {
         fpsCounter.paintComponent(graphics);
         fpsCounter.incrementFrames();
 
-        if (hero != null) {
-            System.out.println("[Board] Repainting board with hero: " + hero.getUuid()  + " at: " + heroX+ ", " + heroY + ", dir: " + heroDir);
+        if (getHero() != null) {
+            var location = getHero().getLocation();
+            System.out.println("[Board] Repainting board with hero: " + getHero().getUuid()  + " at: " + location.getX() + ", " + location.getY() + ", dir: " + getHero().getDirection());
         }
     }
 

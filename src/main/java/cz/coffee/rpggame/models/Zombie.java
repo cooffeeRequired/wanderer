@@ -3,16 +3,16 @@ package cz.coffee.rpggame.models;
 public class Zombie extends Monster {
     public Zombie() {
         super();
-        if (level > 5){
-            maxHP = level  * mIndex * randInt() * 10;
-            currentHP = maxHP;
-            dp = mIndex * randInt() * 6;
-            sp = mIndex * randInt() * 6;
+        if (getLevel() > 5){
+            setMaxHP(getLevel()  * mIndex * randInt() * 10);
+            setCurrentHP(getMaxHP());
+            setDp(mIndex * randInt() * 6);
+            setSp(mIndex * randInt() * 6);
         } else {
-            maxHP = (double) level / 2 * mIndex * randInt()+10;
-            currentHP = maxHP;
-            dp = (double) mIndex / 2 * randInt()+5;
-            sp = mIndex * randInt()+5;
+            setMaxHP((double) getLevel() / 2 * mIndex * randInt()+10);
+            setCurrentHP(getMaxHP());
+            setDp((double) mIndex / 2 * randInt()+5);
+            setSp(mIndex * randInt()+5);
         }
         img = "img/zombie.png";
     }

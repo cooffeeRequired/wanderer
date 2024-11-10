@@ -3,46 +3,37 @@ package cz.coffee.rpggame.services;
 import cz.coffee.rpggame.components.FPSCounter;
 import cz.coffee.rpggame.enums.GameState;
 import cz.coffee.rpggame.models.Hero;
+import lombok.Getter;
 
 import javax.swing.*;
 
-public class GameEngine implements Runnable {
-    private Thread thread;
+public class GameEngine {
     public GameState state = GameState.STOPPED;
-    public static Board board;
 
-    public void start() {
-        this.run();
-    }
+    @Getter private static Hero hero;
+    @Getter private static Board board;
+    @Getter private static GameEngine engine;
 
-    @Override
     public void run() {
         state = GameState.RUNNING;
 
-        thread = new Thread(() -> {
-            JFrame frame = new JFrame("Wanderer RPG");
-            board = new Board(new FPSCounter(), new Hero());
+        hero = new Hero();
+        board = new Board(new FPSCounter(), hero);
 
-            frame.add(board);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(true);
-            frame.pack();
-            frame.addKeyListener(new GameKeyEvents(this board));
+        JFrame frame = new JFrame("Wanderer RPG");
+        frame.add(board);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setVisible(true);
+        frame.pack();
+        frame.addKeyListener(new GameKeyEvents(this, board));
 
-            board.changeState(GameState.START);
-
-
-
-//            while (state == GameState.RUNNING) {
-//                board.repaint();
-//            }
-        });
-        thread.start();
+        board.changeState(GameState.START);
     }
 
     public void stop() {
-        if (state.equals(GameState.RUNNING) && thread.isAlive()) {
-            thread.interrupt();
+        if (state.equals(GameState.RUNNING)) {
+            state = GameState.STOPPED;
         }
     }
 }

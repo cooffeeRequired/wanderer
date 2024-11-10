@@ -4,16 +4,17 @@ public class Skeleton extends Monster {
     public Skeleton() {
         super();
         img = "img/Skeleton.png";
-        if (level > 5){
-            maxHP = level  * mIndex * randInt() * 5;
-            currentHP = maxHP;
-            dp = mIndex * randInt() * 4;
-            sp = mIndex * randInt() * 4;
+        if (getLevel() > 5){
+            setMaxHP(getLevel()  * mIndex * randInt() * 5);
+            setCurrentHP(getMaxHP());
+
+            setDp(mIndex * randInt() * 4);
+            setSp(mIndex * randInt() * 4);
         } else {
-            maxHP = (double) (level / 2) * mIndex * randInt();
-            currentHP = maxHP;
-            dp = (double) mIndex / 2 * randInt();
-            sp = mIndex * randInt();
+            setMaxHP((double) (getLevel() / 2) * mIndex * randInt());
+            setCurrentHP(getMaxHP());
+            setDp((double) mIndex / 2 * randInt());
+            setSp(mIndex * randInt());
         }
     }
 }

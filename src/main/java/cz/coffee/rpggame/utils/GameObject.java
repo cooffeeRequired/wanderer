@@ -1,4 +1,4 @@
-package cz.coffee.rpggame;
+package cz.coffee.rpggame.utils;
 
 
 import cz.coffee.rpggame.models.GameEntity;

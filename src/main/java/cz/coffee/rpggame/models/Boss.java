@@ -4,16 +4,20 @@ public class Boss extends Monster {
     public Boss() {
         super();
         img = "img/boss.png";
-        if (level > 5) {
-            maxHP = level/1.5 * mIndex * randInt() + randInt();
-            currentHP = maxHP;
-            dp = mIndex  * randInt() + ranMultiple(2);
-            sp = mIndex * randInt() + mIndex*4;
+        if (getLevel() > 5) {
+            setMaxHP(getLevel()/1.5 * mIndex * randInt() + randInt());
+            setCurrentHP(getMaxHP());
+            setDp(mIndex  * randInt() + ranMultiple(2));
+            setSp(mIndex * randInt() + mIndex*4);
+
         } else {
-            maxHP = 2 * mIndex * randInt() + randInt();
-            currentHP = maxHP;
-            dp = ((float) mIndex / 2 * randInt()) + randInt();
-            sp = mIndex * randInt() + mIndex * 2;
+            setCurrentHP(2 * mIndex * randInt() + randInt());
+            setCurrentHP(getMaxHP());
+            var newDP = ((float) mIndex / 2 * randInt()) + randInt();
+            var newSP = mIndex * randInt() + mIndex * 2;
+
+            setDp(newDP);
+            setSp(newSP);
         }
     }
 }

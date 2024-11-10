@@ -4,12 +4,14 @@ import cz.coffee.rpggame.controllers.GameController;
 import cz.coffee.rpggame.enums.GameState;
 import cz.coffee.rpggame.models.Hero;
 import cz.coffee.rpggame.models.Monster;
-import cz.coffee.rpggame.structures.*;
+import cz.coffee.rpggame.structures.Floor;
+import cz.coffee.rpggame.utils.Location;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import static cz.coffee.rpggame.GameConfig.TILE_SIZE;
+import static cz.coffee.rpggame.services.GameEngine.getHero;
 import static java.awt.event.KeyEvent.*;
 
 public class GameKeyEvents implements KeyListener {
@@ -34,22 +36,35 @@ public class GameKeyEvents implements KeyListener {
         if (engine.state.equals(GameState.RUNNING) || engine.state.equals(GameState.PLAYING)) {
 
             var bState = board.state;
+            var hero = getHero();
+            var ts = TILE_SIZE;
+
+            var x = hero.getLocation().getX();
+            var y = hero.getLocation().getY();
 
             switch (e.getKeyCode()) {
                 case VK_UP: {
-                    this.moveUp();
+                    hero.setDirection("img/hero-up.png");
+                    var moveToLocation = new Location(x, y - ts);
+                    this.move(hero, moveToLocation);
                     break;
                 }
                 case VK_DOWN: {
-                    this.moveDown();
+                    hero.setDirection("img/hero-down.png");
+                    var moveToLocation = new Location(x, y + ts);
+                    this.move(hero, moveToLocation);
                     break;
                 }
                 case VK_LEFT: {
-                    this.moveLeft();
+                    hero.setDirection("img/hero-left.png");
+                    var moveToLocation = new Location(x - ts, y);
+                    this.move(hero, moveToLocation);
                     break;
                 }
                 case VK_RIGHT: {
-                    this.moveRight();
+                    hero.setDirection("img/hero-right.png");
+                    var moveToLocation = new Location(x + ts, y);
+                    this.move(hero, moveToLocation);
                     break;
                 }
                 case VK_ENTER: {
@@ -59,62 +74,39 @@ public class GameKeyEvents implements KeyListener {
                     } else if (bState.equals(GameState.INSTR)) {
                         System.out.println("Clicked INSTR");
                         board.changeState(GameState.PLAYING);
-                    } else if (bState.equals(GameState.GAME_OVER)) {
-                        //TODO handle new game / hero / monsters etc
-                    }
+                    }  //TODO handle new game / hero / monsters etc
+
                 }
             }
         }
     }
 
-    public void moveUp() {
-        Board.heroDir = "img/hero-up.png";
-        var y = Board.heroY;
-        y -= TILE_SIZE;
-        this.move(Board.heroX, y);
-    }
+    private void move(Hero hero, Location moveToLocation) {
 
-    public void moveDown() {
-        Board.heroDir = "img/hero-down.png";
-        var y = Board.heroY;
-        y += TILE_SIZE;
-        this.move(Board.heroX, y);
-    }
+        var x = moveToLocation.getX();
+        var y = moveToLocation.getY();
 
-
-    public void moveRight() {
-        Board.heroDir = "img/hero-right.png";
-        var x = Board.heroX;
-        x += TILE_SIZE;
-        this.move(x, Board.heroY);
-    }
-
-    public void moveLeft() {
-        Board.heroDir= "img/hero-left.png";
-        var x = Board.heroX;
-        x -= TILE_SIZE;
-        this.move(x, Board.heroY);
-    }
-
-    private void move(int x, int y) {
-        boolean g = canMoveThere(x, y);
-        if (g) {
-            Board.heroX= x;
-            Board.heroY= y;
+        boolean canMoveThere = canMoveThere(x, y, hero.getLocation());
+        if (canMoveThere) {
+            hero.getLocation().setX(x);
+            hero.getLocation().setY(y);
 
             board.repaint();
 
-            System.out.println("\u001B[33m[GameKeyEvents] Drawing hero: " + hero.getUuid() + " at: " + Board.heroX + ", " + Board.heroY + "\u001B[0m");
+            System.out.println("\u001B[33m[GameKeyEvents] Drawing hero: " + hero.getUuid() + " at: " + hero.getLocation().getX() + ", " + hero.getLocation().getY() + "\u001B[0m");
         } else {
             System.out.println("\u001B[33m[GameKeyEvents] Drawing hero: " + hero.getUuid() + " at: ! Cannot move there\u001B[0m");
         }
     }
 
-    private boolean canMoveThere(int x, int y) {
+    private boolean canMoveThere(int x, int y, Location heroLocation) {
         int row = y / TILE_SIZE;
         int colm = x / TILE_SIZE;
 
-        if (x == hero.getPosX() && y == hero.getPosY()) {
+        int heroX = heroLocation.getX();
+        int heroY = heroLocation.getY();
+
+        if (x == heroX && y == heroY) {
             return false;
         }
 
@@ -127,7 +119,7 @@ public class GameKeyEvents implements KeyListener {
         }
 
         for (Monster monster : GameController.getEntities().getMonsters()) {
-            if (monster.getPosX() == x && monster.getPosY() == y) {
+            if (monster.getLocation().getX() == x && monster.getLocation().getY() == y) {
                 return true;
             }
         }

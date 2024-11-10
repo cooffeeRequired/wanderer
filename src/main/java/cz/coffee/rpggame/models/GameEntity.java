@@ -1,13 +1,21 @@
 package cz.coffee.rpggame.models;
 
-import lombok.Data;
+import cz.coffee.rpggame.utils.Location;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Random;
+import java.util.UUID;
 
-@Data
 public abstract class GameEntity {
-    double currentHP, maxHP, dp, sp;
-    public int level, PosX, PosY;
+    @Getter @Setter private double currentHP, maxHP, dp, sp;
+    @Getter @Setter private String direction;
+    @Setter @Getter private Location location = new Location(0, 0);
+    @Getter @Setter private int level;
+    @Getter private final UUID uuid = UUID.randomUUID();
+
+    @Getter @Setter boolean haveKey;
+
     public Random rand = new Random();
 
     public GameEntity() {
@@ -33,4 +41,9 @@ public abstract class GameEntity {
     public int randomDir() {
         return randInt(4);
     }
+
+    public void setLocation(int x, int y) {
+        this.location.setLocation(x, y);
+    }
+
 }
