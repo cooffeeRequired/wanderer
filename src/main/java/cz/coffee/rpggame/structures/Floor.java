@@ -2,6 +2,7 @@ package cz.coffee.rpggame.structures;
 
 import cz.coffee.rpggame.GameConfig;
 import cz.coffee.rpggame.services.Board;
+import cz.coffee.rpggame.services.GameEngine;
 import cz.coffee.rpggame.utils.PositionedImage;
 
 import java.awt.*;
@@ -14,7 +15,9 @@ public class Floor {
         for (int i = 0; i < tiles; i++) {
 
             for (int j = 0; j < tiles; j++) {
-                PositionedImage tile = new PositionedImage("img/floor.png", j * imgPixels, i * imgPixels, true);
+                PositionedImage tile = GameEngine.getTiles().get("floor");
+                tile.setPosX(j * imgPixels);
+                tile.setPosY(i * imgPixels);
                 tile.draw(graphics);
             }
         }
@@ -26,7 +29,9 @@ public class Floor {
         for (int i = 0; i < tiles; i++) {
             for (int j = 0; j < tiles; j++) {
                 if (wallMatrix(Board.LEVEL_MAP)[j][i]) {
-                    PositionedImage wall = new PositionedImage("img/wall.png", j * imgPixels, i * imgPixels, true);
+                    PositionedImage wall = GameEngine.getTiles().get("wall");
+                    wall.setPosX(j * imgPixels);
+                    wall.setPosY(i * imgPixels);
                     wall.draw(graphics);
                 }
 

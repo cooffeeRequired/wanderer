@@ -26,7 +26,7 @@ public class GameController {
     }
 
     public void play(Graphics g) {
-        this.defaultPaint(g);
+        //this.defaultPaint(g);
     }
 
     private void defaultPaint(Graphics g) {
@@ -54,14 +54,15 @@ public class GameController {
 
     public void startGame(Graphics g)
     {
-        this.prepareMap();
         this.defaultPaint(g);
+
+
     }
 
     private void prepareMap() {
-        entities.clear();
-        structures.clear();
-        hero.initialize();
+//        entities.clear();
+//        structures.clear();
+//        hero.initialize();
 
         if (LEVEL_MAP >= 1) {
             if (LEVEL_MAP == 1 || LEVEL_MAP == 5) {
@@ -73,7 +74,6 @@ public class GameController {
 
             for (int i = 0; i < 2; i++) {
                 entities.add(new Skeleton());
-
 
                 if (LEVEL_MAP > 1) {
                     structures.add(new PotionRed());

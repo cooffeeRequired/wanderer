@@ -7,11 +7,13 @@ import cz.coffee.rpggame.components.StartScreen;
 import cz.coffee.rpggame.controllers.GameController;
 import cz.coffee.rpggame.enums.GameState;
 import cz.coffee.rpggame.models.Hero;
+import cz.coffee.rpggame.utils.Console;
+import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Board extends JComponent implements Changeable {
+public class Board extends JComponent implements Changeable, Runnable{
     private final FPSCounter fpsCounter;
     private final StartScreen startScreen;
     private final DialogScreen dialogScreen;
@@ -21,6 +23,8 @@ public class Board extends JComponent implements Changeable {
     public static int LEVEL_MAP = 1;
 
     private final GameController controller;
+
+    @Getter private Thread gameLoop;
 
     public Board(FPSCounter fpsCounter, Hero hero) {
         this.fpsCounter = fpsCounter;
@@ -32,20 +36,25 @@ public class Board extends JComponent implements Changeable {
         setVisible(true);
     }
 
+    private void startGameLoop() {
+        gameLoop = new Thread(this);
+        gameLoop.start();
+    }
 
+    private void updateGame() {
+        //GameEngine.getHero().move(); // Předpokládá se, že máte metodu move v hrdinovi
+        //GameController.getEntities().getMonsters().forEach(Monster::moveRandomOneTile);
+    }
 
     @Override
     protected void paintComponent(Graphics graphics) {
-        System.out.println("GAME_STATE: " + state);
-
         super.paintComponent(graphics);
+        Graphics2D g2 = (Graphics2D) graphics;
 
         switch (state) {
-            case NEW_GAME -> {
-                startScreen.paintComponent(graphics);
-            }
+            case NEW_GAME -> startScreen.paintComponent(g2);
             case INSTR -> //noinspection TextBlockMigration
-                    dialogScreen.drawWithText(graphics, "INSTRUKCE:\n" +
+                    dialogScreen.drawWithText(g2, "INSTRUKCE:\n" +
                     "Pohybujte hrdinou pomocí šipek." +
                     "Když narazíte na příšeru, začne bitva. Uvidíte červený obdélník kolem vašeho hrdiny." +
                     "Útočte pomocí mezerníku. Nepřátelé vrátí úder, ale nikdy nezaútočí jako první." +
@@ -55,24 +64,15 @@ public class Board extends JComponent implements Changeable {
                     "DP = Body obrany\n" +
                     "SP = Body útoku");
             case INITIALIZED -> {
-                controller.startGame(graphics);
+                this.startGameLoop();
+                controller.startGame(g2);
                 state = GameState.PLAYING;
             }
-            case PLAYING -> controller.play(graphics);
-
+            case PLAYING -> controller.play(g2);
         }
-        /*
-            TODO !
-                fpsCounter.paintComponent(graphics);
-                fpsCounter.incrementFrames();
-         */
 
-        if (GameEngine.getHero() != null) {
-
-            var location = GameEngine.getHero().getLocation();
-
-            System.out.println("[Board] Repainting board with hero: " + GameEngine.getHero().getUuid()  + " at: " + location.getX() + ", " + location.getY() + ", dir: " + GameEngine.getHero().getDirection());
-        }
+        fpsCounter.paintComponent(graphics);
+        fpsCounter.incrementFrames();
     }
 
     @Override
@@ -81,4 +81,35 @@ public class Board extends JComponent implements Changeable {
         repaint();
     }
 
+    @Override
+    public void run() {
+        double drawInterval = 1_000_000_000 / GameConfig.FPS;
+        double delta = 0;
+        long lastTime = System.nanoTime();
+        long currentTime;
+
+        int timer = 0;
+        int fpsCounter = 0;
+
+        // Game loop
+        while (gameLoop != null && gameLoop.isAlive()) {
+            currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / drawInterval;
+            timer += (int) (currentTime - lastTime);
+            lastTime = currentTime;
+
+            if (delta >= 1) {
+                updateGame();
+                repaint();
+                delta--;
+                fpsCounter++;
+            }
+
+            if (timer >= 1_000_000_000) { // If one second has passed
+                Console.printlnVia("game-loop", String.format("FPS: %d, draw: %f", fpsCounter, delta));
+                fpsCounter = 0;
+                timer = 0;
+            }
+        }
+    }
 }
