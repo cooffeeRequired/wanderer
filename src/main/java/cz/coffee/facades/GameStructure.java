@@ -1,8 +1,6 @@
 package cz.coffee.facades;
 
 import cz.coffee.GameConfig;
-import cz.coffee.components.Board;
-import cz.coffee.entities.Hero;
 import cz.coffee.facades.templates.DefaultEntity;
 import cz.coffee.structures.Floor;
 import lombok.Data;
@@ -71,24 +69,6 @@ public abstract class GameStructure implements DefaultEntity {
                 .draw(g);
     }
 
-    @Override
-    public boolean isWall(int x, int y) {
-        int row = y / tileSize;
-        int col = x / tileSize;
-        return row < 0 || row >= numTiles || col < 0 || col >= numTiles
-                || !Floor.wallMatrix(Board.LEVEL_MAP)[col][row];
-    }
-    @Override
-    public boolean isHero(int x, int y) {
-        Hero hero = GameEngine.getHero();
-
-        int heroTileX = hero.getLocation().getX() / tileSize;
-        int heroTileY = hero.getLocation().getY()  / tileSize;
-        int tileX = x / tileSize;
-        int tileY = y / tileSize;
-        return heroTileX == tileX && heroTileY == tileY;
-    }
-
     public void moveRandomOneTile() {
         do {
             int nextX = this.getPositionX();
@@ -116,5 +96,4 @@ public abstract class GameStructure implements DefaultEntity {
 
         } while (true);
     }
-
 }

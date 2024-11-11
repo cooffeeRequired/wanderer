@@ -1,9 +1,7 @@
 package cz.coffee.facades;
 
 import cz.coffee.GameConfig;
-import cz.coffee.components.Board;
 import cz.coffee.facades.templates.DefaultEntity;
-import cz.coffee.structures.Floor;
 import cz.coffee.utils.GameClass;
 
 @GameClass
@@ -32,14 +30,6 @@ public class Monster extends GameEntity implements DefaultEntity {
 
         getLocation().setLocation(x, y);
     }
-
-    @Override
-    public boolean isWall(int x, int y) {
-        int row = y / tileSize;
-        int col = x / tileSize;
-        return row < 0 || row >= tiles || col < 0 || col >= tiles || !Floor.wallMatrix(Board.LEVEL_MAP)[col][row];
-    }
-
 
     public void setMonsterIndex() {
         int i = rand.nextInt(10) + 1;
