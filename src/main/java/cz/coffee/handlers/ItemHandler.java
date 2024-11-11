@@ -1,5 +1,6 @@
 package cz.coffee.handlers;
 
+import cz.coffee.GameConfig;
 import cz.coffee.entities.Hero;
 import cz.coffee.facades.GameEntity;
 import cz.coffee.items.PotionGreen;
@@ -21,12 +22,26 @@ public class ItemHandler implements Handler<GameEntity>{
     @Override
     public boolean handle(GameEntity b) {
         var eLocation = b.getLocation();
+        var eDirection = b.getDirection();
+
+
+        int yOffset = switch (eDirection) {
+            case "hero-down" -> GameConfig.TILE_SIZE;
+            case "hero-up" -> -GameConfig.TILE_SIZE;
+            default -> 0;
+        };
+
+        int xOffset = switch (eDirection) {
+            case "hero-right" -> GameConfig.TILE_SIZE;
+            case "hero-left" -> -GameConfig.TILE_SIZE;
+            default -> 0;
+        };
 
         if (b instanceof Hero hero) {
             var iterator = ITEMS.iterator();
             while (iterator.hasNext()) {
                 var e = iterator.next();
-                if (e.getPositionX() == eLocation.getX() && e.getPositionY() == eLocation.getY()) {
+                if (e.getPositionX() == eLocation.getX() + xOffset && e.getPositionY() == eLocation.getY() + yOffset) {
                     switch (e) {
                         case PotionRed _ -> {
                             hero.redPotion();
