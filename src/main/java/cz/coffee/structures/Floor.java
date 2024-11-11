@@ -7,17 +7,17 @@ import cz.coffee.utils.PositionedImage;
 import lombok.Getter;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 public class Floor {
 
     public static boolean isFloorDrown = false;
     public static boolean isWallsDrown = false;
 
-    @Getter private static WeakHashMap<List<Integer>, PositionedImage> floor = new WeakHashMap<>();
-    @Getter private static WeakHashMap<List<Integer>, PositionedImage> walls = new WeakHashMap<>();
+    @Getter private static HashMap<List<Integer>, PositionedImage> floor = new HashMap<>();
+    @Getter private static HashMap<List<Integer>, PositionedImage> walls = new HashMap<>();
 
 
 
@@ -29,7 +29,7 @@ public class Floor {
         checkExists(graphics, isWallsDrown, walls);
     }
 
-    private static void checkExists(Graphics graphics, boolean exist, WeakHashMap<List<Integer>, PositionedImage> walls) {
+    private static void checkExists(Graphics graphics, boolean exist, HashMap<List<Integer>, PositionedImage> walls) {
         if (exist) {
             for (Map.Entry<List<Integer>, PositionedImage> entry : walls.entrySet()) {
                 var location = entry.getKey();
