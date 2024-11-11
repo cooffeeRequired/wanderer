@@ -50,20 +50,20 @@ public class GameEngine {
     }
 
     private void initializeTiles() {
-        PositionedImage floorTile = new PositionedImage("img/tiles/floor.png", true);
-        PositionedImage wallTile = new PositionedImage("img/tiles/wall.png", true);
+        var floorTile = new PositionedImage("img/tiles/floor.png", true);
+        var wallTile = new PositionedImage("img/tiles/wall.png", true);
 
-        PositionedImage heroUpTile = new PositionedImage("img/hero/u.png", true);
-        PositionedImage heroDownTile = new PositionedImage("img/hero/d.png", true);
-        PositionedImage heroLeftTile = new PositionedImage("img/hero/l.png", true);
-        PositionedImage heroRightTile = new PositionedImage("img/hero/r.png", true);
+        var heroUpTile = new PositionedImage("img/hero/u.png", true);
+        var heroDownTile = new PositionedImage("img/hero/d.png", true);
+        var heroLeftTile = new PositionedImage("img/hero/l.png", true);
+        var heroRightTile = new PositionedImage("img/hero/r.png", true);
 
-        PositionedImage redPotionTile = new PositionedImage("img/items/potionRed.png", true);
-        PositionedImage greenPotionTile = new PositionedImage("img/items/potionGreen.png", true);
-        PositionedImage shieldTile = new PositionedImage("img/items/shield.png", true);
-        PositionedImage swordTile = new PositionedImage("img/items/sword.png", true);
+        var redPotionTile = new PositionedImage("img/items/potionRed.png", true);
+        var greenPotionTile = new PositionedImage("img/items/potionGreen.png", true);
+        var shieldTile = new PositionedImage("img/items/shield.png", true);
+        var swordTile = new PositionedImage("img/items/sword.png", true);
 
-        PositionedImage zombieTile = new PositionedImage("img/monsters/zombie.png", true);
+        var zombieTile = new PositionedImage("img/monsters/zombie.png", true);
         var skeletonTile = new PositionedImage("img/monsters/skeleton.png", true);
         var bosseTile = new PositionedImage("img/monsters/boss.png", true);
         var skeletonWithKeyTile = new PositionedImage("img/monsters/skeleton_w.png", true);
@@ -71,6 +71,8 @@ public class GameEngine {
         var doorTile = new PositionedImage("img/items/door.png", true);
         var finalDoorTile = new PositionedImage("img/items/finalDoor.png", true);
         var zombieEggTile = new PositionedImage("img/monsters/zombieEgg.png", true);
+
+        var boomTile = new PositionedImage("img/tiles/boom.png", true);
 
 
         GameEngine.tiles.put("floor", floorTile);
@@ -95,7 +97,7 @@ public class GameEngine {
         GameEngine.tiles.put("finalDoor", finalDoorTile);
         GameEngine.tiles.put("zombieEgg", zombieEggTile);
 
-
+        GameEngine.tiles.put("boom", boomTile);
 
     }
 }

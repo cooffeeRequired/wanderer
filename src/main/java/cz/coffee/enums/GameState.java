@@ -14,6 +14,12 @@ public enum GameState {
     PLAYING("playing", (byte) 0xf03),
     INSTR("instructions", (byte) 0xf3),
     INITIALIZED("initialized", (byte) 0xf9),
+
+
+    FIGHT("fight", (byte) 0xf88),
+    BOSS_FIGHT("boss_fight", (byte) 0xf99),
+
+
     UNKNOWN("unknown", (byte) 0x00);
 
     final String stateText;

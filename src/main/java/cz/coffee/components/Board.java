@@ -5,6 +5,8 @@ import cz.coffee.controllers.EntityController;
 import cz.coffee.controllers.GameController;
 import cz.coffee.entities.Hero;
 import cz.coffee.enums.GameState;
+import cz.coffee.facades.GameEngine;
+import cz.coffee.facades.Monster;
 import cz.coffee.handlers.KeyEventHandler;
 import cz.coffee.handlers.MovementHandler;
 import cz.coffee.utils.Console;
@@ -22,6 +24,7 @@ public class Board extends JComponent implements Changeable, Runnable{
     private final FPSCounter fpsCounter;
     private final StartScreen startScreen;
     private final DialogScreen dialogScreen;
+    private final FightUI fightUI;
 
     public GameState state;
 
@@ -41,6 +44,7 @@ public class Board extends JComponent implements Changeable, Runnable{
 
         this.startScreen = new StartScreen();
         this.dialogScreen = new DialogScreen();
+        this.fightUI = new FightUI();
         setPreferredSize(new Dimension(GameConfig.GAME_WINDOW_WIDTH, GameConfig.GAME_WINDOW_HEIGHT));
         setVisible(true);
     }
@@ -93,7 +97,6 @@ public class Board extends JComponent implements Changeable, Runnable{
                     }
                     hero.update(g2);
                 }
-
                 drawHeroStats(hero, g2);
             }
         }
@@ -168,5 +171,14 @@ public class Board extends JComponent implements Changeable, Runnable{
                         + hero.getSp(),
                 textX,
                 textY);
+    }
+
+    public Graphics2D fight(Monster monster, Hero hero) {
+        Graphics2D g2 = (Graphics2D) getGraphics();
+
+        monster.setCurrentHP(0);
+        hero.setCurrentHP(hero.getCurrentHP() - 4);
+
+        return g2;
     }
 }
