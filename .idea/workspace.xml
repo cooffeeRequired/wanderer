@@ -5,18 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ec11351-e43f-404a-963e-0512b8be69bf" name="Changes" comment="add new handlers">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/components/Tile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/utils/ConsoleColors.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/utils/ConsoleFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/controllers/EntityController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/facades/GameEngine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/handlers/MovementHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/GameConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/GameConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/components/Tile.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/controllers/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/GameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/GameEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/handlers/hero/AttributeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/handlers/AttributeHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/handlers/hero/EntityHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/handlers/EntityHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/handlers/hero/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/handlers/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/handlers/hero/ItemHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/handlers/ItemHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/handlers/hero/MovementHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/items/PotionGreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/items/PotionGreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/items/PotionRed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/items/PotionRed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/items/Shield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/items/Shield.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/items/Sword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/items/Sword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Boss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/GameEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/facades/GameEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Hero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/facades/Monster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Skeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Skeleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/SkeletonWKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/SkeletonWKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/Zombie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/patterns/CouldItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/facades/templates/CouldItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/patterns/CouldPotions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/facades/templates/CouldPotions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/patterns/DefaultEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/facades/templates/DefaultEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/models/patterns/Leveling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/facades/templates/Leveling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/components/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/Changeable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/components/Changeable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/GameEngine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/services/GameKeyEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/facades/GameKeyEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/structures/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/structures/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/structures/FinalDoor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/structures/FinalDoor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/structures/Floor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/structures/Floor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/structures/GameStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/structures/GameStructure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/structures/ZombieEgg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/structures/ZombieEgg.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/utils/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/utils/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/utils/Faker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/utils/GameObject.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/utils/PositionedImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/coffee/rpggame/utils/PositionedImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/iloveimg-resized.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +104,7 @@
     "Application.cz.coffee.rpggame.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "extract.method.default.visibility": "private",
     "git-widget-placeholder": "new-game-loop/01",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -163,10 +194,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.cz.coffee.rpggame.Main" />
         <item itemvalue="Application.StartScreen" />
-        <item itemvalue="Application.Board" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.cz.coffee.rpggame.Main" />
+        <item itemvalue="Application.Board" />
+        <item itemvalue="Application.cz.coffee.rpggame.Main" />
       </list>
     </recent_temporary>
   </component>

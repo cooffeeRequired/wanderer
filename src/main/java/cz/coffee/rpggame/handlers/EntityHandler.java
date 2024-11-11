@@ -1,6 +1,6 @@
-package cz.coffee.rpggame.handlers.hero;
+package cz.coffee.rpggame.handlers;
 
-import cz.coffee.rpggame.models.GameEntity;
+import cz.coffee.rpggame.facades.GameEntity;
 
 public class EntityHandler implements Handler<GameEntity> {
     @Override

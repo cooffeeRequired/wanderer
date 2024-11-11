@@ -1,4 +1,4 @@
-package cz.coffee.rpggame.models.patterns;
+package cz.coffee.rpggame.facades.templates;
 
 public interface Leveling {
     default void setLevel(int level) {

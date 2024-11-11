@@ -6,6 +6,11 @@ import cz.coffee.rpggame.utils.GameClass;
 @GameClass
 public class Sword extends GameStructure {
     public Sword() {
-        setImg("img/sword.png");
+        setImg("sword");
+    }
+
+    @Override
+    public boolean spawned() {
+        return spawned;
     }
 }

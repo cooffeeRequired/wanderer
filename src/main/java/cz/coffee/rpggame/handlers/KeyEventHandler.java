@@ -1,8 +1,9 @@
-package cz.coffee.rpggame.services;
+package cz.coffee.rpggame.handlers;
 
+import cz.coffee.rpggame.components.Board;
 import cz.coffee.rpggame.enums.GameState;
+import cz.coffee.rpggame.facades.GameEngine;
 import cz.coffee.rpggame.models.Hero;
-import cz.coffee.rpggame.handlers.hero.MovementHandler;
 import cz.coffee.rpggame.utils.Location;
 
 import java.awt.event.KeyEvent;
@@ -11,14 +12,14 @@ import java.awt.event.KeyListener;
 import static cz.coffee.rpggame.GameConfig.TILE_SIZE;
 import static java.awt.event.KeyEvent.*;
 
-public class GameKeyEvents implements KeyListener {
+public class KeyEventHandler implements KeyListener {
 
     protected final GameEngine engine;
     protected final Board board;
     protected final Hero hero;
     protected final MovementHandler movementHandler;
 
-    public GameKeyEvents(final GameEngine engine, Board board, Hero hero) {
+    public KeyEventHandler(final GameEngine engine, Board board, Hero hero) {
         this.engine = engine;
         this.board = board;
         this.hero = hero;
@@ -45,25 +46,25 @@ public class GameKeyEvents implements KeyListener {
 
         switch (e.getKeyCode()) {
             case VK_UP: {
-                hero.setDirection("img/hero-up.png");
+                hero.setDirection("hero-up");
                 var moveToLocation = new Location(x, y - ts);
                 this.movementHandler.move(hero, moveToLocation);
                 break;
             }
             case VK_DOWN: {
-                hero.setDirection("img/hero-down.png");
+                hero.setDirection("hero-down");
                 var moveToLocation = new Location(x, y + ts);
                 this.movementHandler.move(hero, moveToLocation);
                 break;
             }
             case VK_LEFT: {
-                hero.setDirection("img/hero-left.png");
+                hero.setDirection("hero-left");
                 var moveToLocation = new Location(x - ts, y);
                 this.movementHandler.move(hero, moveToLocation);
                 break;
             }
             case VK_RIGHT: {
-                hero.setDirection("img/hero-right.png");
+                hero.setDirection("hero-right");
                 var moveToLocation = new Location(x + ts, y);
                 this.movementHandler.move(hero, moveToLocation);
                 break;

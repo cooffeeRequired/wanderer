@@ -1,4 +1,4 @@
-package cz.coffee.rpggame.handlers.hero;
+package cz.coffee.rpggame.handlers;
 
 @SuppressWarnings("all")
 public interface Handler<T> {

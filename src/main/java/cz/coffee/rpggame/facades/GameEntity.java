@@ -1,12 +1,15 @@
-package cz.coffee.rpggame.models;
+package cz.coffee.rpggame.facades;
 
+import cz.coffee.rpggame.utils.Console;
 import cz.coffee.rpggame.utils.Location;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.awt.*;
 import java.util.Random;
 import java.util.UUID;
 
+@SuppressWarnings("unused")
 public abstract class GameEntity {
     @Getter @Setter private double currentHP, maxHP, dp, sp;
     @Getter @Setter private String direction;
@@ -26,7 +29,7 @@ public abstract class GameEntity {
         return rand.nextInt(5) + 1;
     }
 
-    int randInt(int x) {
+    public int randInt(int x) {
         return rand.nextInt(x) + 1;
     }
 
@@ -44,6 +47,27 @@ public abstract class GameEntity {
 
     public void setLocation(int x, int y) {
         this.location.setLocation(x, y);
+    }
+
+    public void spawn(Graphics g) {
+        if (GameEngine.getTiles().containsKey(getDirection())) {
+            GameEngine.getTiles().get(getDirection()).setPosX(location.getX()).setPosY(location.getY()).draw(g);
+        } else {
+            Console.printlnVia("mv-handler", "DIR: " + getDirection());
+        }
+    }
+
+    public void update(Graphics g) {
+        if (GameEngine.getTiles().containsKey(getDirection())) {
+            GameEngine.getTiles().get(getDirection()).setPosX(location.getX()).setPosY(location.getY()).draw(g);
+        }
+    }
+    public void spawn(int x, int y, Graphics g) {
+        if (GameEngine.getTiles().containsKey(getDirection())) {
+            GameEngine.getTiles().get(getDirection()).setPosX(x).setPosY(y).draw(g);
+        } else {
+            Console.printlnVia("mv-handler", "DIR: " + getDirection());
+        }
     }
 
 }

@@ -2,18 +2,19 @@ package cz.coffee.rpggame.structures;
 
 import cz.coffee.rpggame.GameConfig;
 import cz.coffee.rpggame.models.Hero;
-import cz.coffee.rpggame.models.patterns.DefaultEntity;
-import cz.coffee.rpggame.services.Board;
-import cz.coffee.rpggame.services.GameEngine;
+import cz.coffee.rpggame.facades.templates.DefaultEntity;
+import cz.coffee.rpggame.components.Board;
+import cz.coffee.rpggame.facades.GameEngine;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.awt.*;
 import java.util.Random;
 
 @Data
-public class GameStructure implements DefaultEntity {
+public abstract class GameStructure implements DefaultEntity {
     String img;
-    int x;
-    int y;
 
     int positionX;
     int positionY;
@@ -21,6 +22,8 @@ public class GameStructure implements DefaultEntity {
     private static final int numTiles = GameConfig.TILES;
 
     public GameStructure() {
+        int x, y;
+
         Random random = new Random();
         do {
             int randomX = random.nextInt(numTiles);
@@ -38,6 +41,26 @@ public class GameStructure implements DefaultEntity {
 
         positionX = x;
         positionY = y;
+    }
+
+
+    @Getter @Setter protected boolean spawned = false;
+
+    public abstract boolean spawned();
+    public void spawn(Graphics g) {
+        GameEngine.getTiles()
+                .get(getImg())
+                .setPosX(getPositionX())
+                .setPosY(getPositionY())
+                .draw(g);
+    }
+    public void spawn(int x, int y, Graphics g) {}
+    public void update(Graphics g) {
+        GameEngine.getTiles()
+                .get(getImg())
+                .setPosX(getPositionX())
+                .setPosY(getPositionY())
+                .draw(g);
     }
 
     @Override

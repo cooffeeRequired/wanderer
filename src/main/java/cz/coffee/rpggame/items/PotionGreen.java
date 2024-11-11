@@ -6,7 +6,13 @@ import cz.coffee.rpggame.utils.GameClass;
 @GameClass
 public class PotionGreen extends GameStructure {
     public PotionGreen() {
-        setImg("img/potionGreen.png");
+        setImg("green-pot");
     }
+
+    @Override
+    public boolean spawned() {
+        return this.spawned;
+    }
+
 }
 

@@ -5,6 +5,11 @@ import cz.coffee.rpggame.utils.GameClass;
 @GameClass
 public class ZombieEgg extends GameStructure {
     public ZombieEgg() {
-        img = "img/zombieEgg.png";
+        img = "zombieEgg";
+    }
+
+    @Override
+    public boolean spawned() {
+        return false;
     }
 }

@@ -1,9 +1,10 @@
 package cz.coffee.rpggame.models;
 
 
-import cz.coffee.rpggame.models.patterns.CouldItems;
-import cz.coffee.rpggame.models.patterns.CouldPotions;
-import cz.coffee.rpggame.models.patterns.Leveling;
+import cz.coffee.rpggame.facades.GameEntity;
+import cz.coffee.rpggame.facades.templates.CouldItems;
+import cz.coffee.rpggame.facades.templates.CouldPotions;
+import cz.coffee.rpggame.facades.templates.Leveling;
 
 public class Hero extends GameEntity implements Leveling, CouldPotions, CouldItems {
 
@@ -15,7 +16,7 @@ public class Hero extends GameEntity implements Leveling, CouldPotions, CouldIte
         setCurrentHP(getMaxHP());
         setDp(2 * randInt());
         setSp(5* randInt());
-        setDirection("img/hero-down.png");
+        setDirection("hero-down");
     }
 
     @Override
@@ -63,10 +64,6 @@ public class Hero extends GameEntity implements Leveling, CouldPotions, CouldIte
     @Override
     public void gotSword() {
         setSp(getSp() + level * 12);
-    }
-
-    public void initialize() {
-        this.levelUp();
     }
 
     @Override

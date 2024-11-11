@@ -1,15 +1,15 @@
-package cz.coffee.rpggame.models;
+package cz.coffee.rpggame.facades;
 
 import cz.coffee.rpggame.GameConfig;
-import cz.coffee.rpggame.models.patterns.DefaultEntity;
-import cz.coffee.rpggame.services.Board;
+import cz.coffee.rpggame.facades.templates.DefaultEntity;
+import cz.coffee.rpggame.components.Board;
 import cz.coffee.rpggame.structures.Floor;
 import cz.coffee.rpggame.utils.GameClass;
 
 @GameClass
 public class Monster extends GameEntity implements DefaultEntity {
     public String img;
-    int mIndex;
+    public int mIndex;
 
     private static final int tileSize = GameConfig.TILE_SIZE;
     private static final int tiles = GameConfig.TILES;

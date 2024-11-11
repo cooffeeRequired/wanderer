@@ -3,7 +3,6 @@ package cz.coffee.rpggame.utils;
 import lombok.Getter;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.WeakHashMap;
 

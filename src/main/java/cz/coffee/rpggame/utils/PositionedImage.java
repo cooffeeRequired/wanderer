@@ -1,7 +1,5 @@
 package cz.coffee.rpggame.utils;
 
-import lombok.Setter;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,7 +9,7 @@ import java.io.IOException;
 public class PositionedImage {
 
     BufferedImage image;
-    @Setter int posX, posY;
+    int posX, posY;
 
     public PositionedImage(String filename, int posX, int posY, boolean resource) {
         this.posX = posX;
@@ -52,6 +50,16 @@ public class PositionedImage {
             graphics.drawImage(image, posX, posY, null);
         }
 
+    }
+
+    public PositionedImage setPosX(int posX) {
+        this.posX = posX;
+        return this;
+    }
+
+    public PositionedImage setPosY(int posY) {
+        this.posY = posY;
+        return this;
     }
 
 }

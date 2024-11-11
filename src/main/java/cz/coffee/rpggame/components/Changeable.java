@@ -1,4 +1,4 @@
-package cz.coffee.rpggame.services;
+package cz.coffee.rpggame.components;
 
 import cz.coffee.rpggame.enums.GameState;
 import cz.coffee.rpggame.utils.GameClass;

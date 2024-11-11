@@ -11,7 +11,7 @@ public class DialogScreen extends JComponent {
 
 
     public DialogScreen() {
-        screenImage = new PositionedImage("img/dialog.png", 0, 0, true);
+        screenImage = new PositionedImage("img/UI/dialog.png", 0, 0, true);
     }
 
     @Override

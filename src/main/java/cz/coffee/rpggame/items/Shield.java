@@ -6,6 +6,12 @@ import cz.coffee.rpggame.utils.GameClass;
 @GameClass
 public class Shield extends GameStructure {
     public Shield() {
-        setImg("img/shield.png");
+        setImg("shield");
     }
+
+    @Override
+    public boolean spawned() {
+        return this.spawned;
+    }
+
 }

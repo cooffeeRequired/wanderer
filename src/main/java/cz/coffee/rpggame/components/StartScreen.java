@@ -9,7 +9,7 @@ public class StartScreen extends JComponent {
     private final PositionedImage startScreenImage;
 
     public StartScreen() {
-        startScreenImage = new PositionedImage("img/startScreen.png", 0, 0, true);
+        startScreenImage = new PositionedImage("img/UI/startScreen.png", 0, 0, true);
     }
 
     @Override

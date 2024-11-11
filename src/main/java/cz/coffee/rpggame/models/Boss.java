@@ -1,12 +1,13 @@
 package cz.coffee.rpggame.models;
 
+import cz.coffee.rpggame.facades.Monster;
 import cz.coffee.rpggame.utils.GameClass;
 
 @GameClass
 public class Boss extends Monster {
     public Boss() {
         super();
-        img = "img/boss.png";
+        img = "boss";
         if (getLevel() > 5) {
             setMaxHP(getLevel()/1.5 * mIndex * randInt() + randInt());
             setCurrentHP(getMaxHP());

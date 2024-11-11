@@ -1,24 +1,24 @@
 package cz.coffee.rpggame.controllers;
 
 import cz.coffee.rpggame.GameConfig;
+import cz.coffee.rpggame.facades.GameEntity;
 import cz.coffee.rpggame.items.PotionGreen;
 import cz.coffee.rpggame.items.PotionRed;
 import cz.coffee.rpggame.items.Shield;
 import cz.coffee.rpggame.items.Sword;
 import cz.coffee.rpggame.models.*;
-import cz.coffee.rpggame.structures.*;
-import cz.coffee.rpggame.utils.GameObject;
-import cz.coffee.rpggame.utils.PositionedImage;
-import lombok.Getter;
+import cz.coffee.rpggame.structures.Floor;
+import cz.coffee.rpggame.structures.GameStructure;
+import cz.coffee.rpggame.structures.ZombieEgg;
 
 import java.awt.*;
+import java.util.Deque;
 
-import static cz.coffee.rpggame.services.Board.LEVEL_MAP;
+import static cz.coffee.rpggame.GameConfig.*;
+import static cz.coffee.rpggame.components.Board.LEVEL_MAP;
 
 public class GameController {
 
-    @Getter static GameObject entities = new GameObject();
-    @Getter static GameObject structures = new GameObject();
     private final Hero hero;
 
     public GameController(Hero hero) {
@@ -26,69 +26,69 @@ public class GameController {
     }
 
     public void play(Graphics g) {
-        //this.defaultPaint(g);
+        if (Floor.isFloorDrown && Floor.isWallsDrown) {
+            Floor.drawExistingFloor(g);
+            Floor.drawExistingWalls(g);
+        } else {
+            Floor.drawFloor(g, GameConfig.TILES, GameConfig.TILE_SIZE);
+            Floor.drawWalls(g, GameConfig.TILES, GameConfig.TILE_SIZE);
+        }
+
+        hero.update(g);
     }
 
-    private void defaultPaint(Graphics g) {
-        Floor.drawFloor(g, GameConfig.TILES, GameConfig.TILE_SIZE);
-        Floor.drawWalls(g, GameConfig.TILES, GameConfig.TILE_SIZE);
-
-
-        entities.getMonsters().forEach(monster -> new PositionedImage(
-                monster.img,
-                monster.getLocation().getX(),
-                monster.getLocation().getY(),
-                true
-        ).draw(g));
-
-        structures.getStructures().forEach(structure -> new PositionedImage(
-                structure.getImg(),
-                structure.getX(),
-                structure.getY(),
-                true
-        ).draw(g));
-
-        var location = hero.getLocation();
-        new PositionedImage(hero.getDirection(), location.getX(), location.getY(), true).draw(g);
-    }
 
     public void startGame(Graphics g)
     {
-        this.defaultPaint(g);
+        Floor.drawFloor(g, GameConfig.TILES, GameConfig.TILE_SIZE);
+        Floor.drawWalls(g, GameConfig.TILES, GameConfig.TILE_SIZE);
 
+        hero.spawn(0, 0, g);
 
+        //this.initializeItems().forEach((item) -> item.spawn(g));
+        //this.initializeStructures().forEach((structure) -> structure.spawn(g));
+        this.initializeEntities().forEach((entity) -> entity.spawn(g));
     }
 
-    private void prepareMap() {
-//        entities.clear();
-//        structures.clear();
-//        hero.initialize();
+    protected Deque<GameStructure> initializeItems() {
+        ITEMS.clear();
 
-        if (LEVEL_MAP >= 1) {
-            if (LEVEL_MAP == 1 || LEVEL_MAP == 5) {
-                structures.add(new Shield());
-                structures.add(new Sword());
-            }
-            entities.add(new SkeletonWKey());
-            entities.add(new Boss());
+        if (LEVEL_MAP == 1 || LEVEL_MAP == 5) {
+            ITEMS.add(new Shield());
+            ITEMS.add(new Sword());
 
             for (int i = 0; i < 2; i++) {
-                entities.add(new Skeleton());
-
-                if (LEVEL_MAP > 1) {
-                    structures.add(new PotionRed());
-                    for (int y = 0; y < LEVEL_MAP - 2; y++) {
-                        entities.add(new Zombie());
-                    }
-                }
+                if (LEVEL_MAP > 1) ITEMS.add(new PotionRed());
                 if (LEVEL_MAP > 3) {
-                    structures.add(new PotionGreen());
-                    structures.add(new PotionRed());
+                    ITEMS.add(new PotionGreen());
+                    ITEMS.add(new PotionRed());
                 }
-                if (LEVEL_MAP > 4) {
-                    structures.add(new ZombieEgg());
-                }
+                if (LEVEL_MAP > 4) STRUCTURES.add(new ZombieEgg());
             }
         }
+
+        return ITEMS;
+    }
+
+    protected Deque<GameStructure> initializeStructures() {
+        STRUCTURES.clear();
+
+        return STRUCTURES;
+    }
+
+    protected Deque<GameEntity> initializeEntities() {
+        ENTITIES.clear();
+        ENTITIES.add(new Skeleton());
+        ENTITIES.add(new Boss());
+
+        for (int i = 0; i < 2; i++) {
+            ENTITIES.add(new Skeleton());
+
+            if (LEVEL_MAP > 1) {
+                for (int y = 0; y < LEVEL_MAP - 2; y++) ENTITIES.add(new Zombie());
+            }
+        }
+
+        return ENTITIES;
     }
 }

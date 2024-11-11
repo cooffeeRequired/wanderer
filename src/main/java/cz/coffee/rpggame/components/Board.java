@@ -1,9 +1,7 @@
-package cz.coffee.rpggame.services;
+package cz.coffee.rpggame.components;
 
 import cz.coffee.rpggame.GameConfig;
-import cz.coffee.rpggame.components.DialogScreen;
-import cz.coffee.rpggame.components.FPSCounter;
-import cz.coffee.rpggame.components.StartScreen;
+import cz.coffee.rpggame.controllers.EntityController;
 import cz.coffee.rpggame.controllers.GameController;
 import cz.coffee.rpggame.enums.GameState;
 import cz.coffee.rpggame.models.Hero;
@@ -12,6 +10,8 @@ import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
+
+import static cz.coffee.rpggame.GameConfig.ITEMS;
 
 public class Board extends JComponent implements Changeable, Runnable{
     private final FPSCounter fpsCounter;
@@ -23,12 +23,14 @@ public class Board extends JComponent implements Changeable, Runnable{
     public static int LEVEL_MAP = 1;
 
     private final GameController controller;
+    private final EntityController entitiesController;
 
     @Getter private Thread gameLoop;
 
     public Board(FPSCounter fpsCounter, Hero hero) {
         this.fpsCounter = fpsCounter;
         this.controller = new GameController(hero);
+        this.entitiesController = new EntityController();
 
         this.startScreen = new StartScreen();
         this.dialogScreen = new DialogScreen();
@@ -41,10 +43,6 @@ public class Board extends JComponent implements Changeable, Runnable{
         gameLoop.start();
     }
 
-    private void updateGame() {
-        //GameEngine.getHero().move(); // Předpokládá se, že máte metodu move v hrdinovi
-        //GameController.getEntities().getMonsters().forEach(Monster::moveRandomOneTile);
-    }
 
     @Override
     protected void paintComponent(Graphics graphics) {
@@ -68,7 +66,11 @@ public class Board extends JComponent implements Changeable, Runnable{
                 controller.startGame(g2);
                 state = GameState.PLAYING;
             }
-            case PLAYING -> controller.play(g2);
+            case PLAYING -> {
+                controller.play(g2);
+                ITEMS.forEach(item -> item.update(g2));
+                entitiesController.update(g2);
+            }
         }
 
         fpsCounter.paintComponent(graphics);
@@ -99,7 +101,6 @@ public class Board extends JComponent implements Changeable, Runnable{
             lastTime = currentTime;
 
             if (delta >= 1) {
-                updateGame();
                 repaint();
                 delta--;
                 fpsCounter++;
@@ -107,6 +108,7 @@ public class Board extends JComponent implements Changeable, Runnable{
 
             if (timer >= 1_000_000_000) { // If one second has passed
                 Console.printlnVia("game-loop", String.format("FPS: %d, draw: %f", fpsCounter, delta));
+                Console.printlnVia("game-loop", String.format("STATE: %s", state.toString()));
                 fpsCounter = 0;
                 timer = 0;
             }

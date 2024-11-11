@@ -1,26 +1,64 @@
 package cz.coffee.rpggame.structures;
 
 import cz.coffee.rpggame.GameConfig;
-import cz.coffee.rpggame.services.Board;
-import cz.coffee.rpggame.services.GameEngine;
+import cz.coffee.rpggame.components.Board;
+import cz.coffee.rpggame.facades.GameEngine;
 import cz.coffee.rpggame.utils.PositionedImage;
+import lombok.Getter;
 
 import java.awt.*;
+import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 public class Floor {
+
+    public static boolean isFloorDrown = false;
+    public static boolean isWallsDrown = false;
+
+    @Getter private static WeakHashMap<List<Integer>, PositionedImage> floor = new WeakHashMap<>();
+    @Getter private static WeakHashMap<List<Integer>, PositionedImage> walls = new WeakHashMap<>();
+
+
+
+    public static void drawExistingFloor(Graphics graphics) {
+        checkExists(graphics, isFloorDrown, floor);
+    }
+
+    public static void drawExistingWalls(Graphics graphics) {
+        checkExists(graphics, isWallsDrown, walls);
+    }
+
+    private static void checkExists(Graphics graphics, boolean exist, WeakHashMap<List<Integer>, PositionedImage> walls) {
+        if (exist) {
+            for (Map.Entry<List<Integer>, PositionedImage> entry : walls.entrySet()) {
+                var location = entry.getKey();
+                var img = entry.getValue();
+
+                if (!location.isEmpty()) {
+                    img.setPosX(location.getFirst());
+                    img.setPosY(location.get(1));
+                    img.draw(graphics);
+                }
+            }
+        }
+    }
 
 
     public static void drawFloor(Graphics graphics, int tiles, int imgPixels) {
 
         for (int i = 0; i < tiles; i++) {
-
             for (int j = 0; j < tiles; j++) {
                 PositionedImage tile = GameEngine.getTiles().get("floor");
                 tile.setPosX(j * imgPixels);
                 tile.setPosY(i * imgPixels);
                 tile.draw(graphics);
+
+                floor.put(List.of(j * imgPixels, i * imgPixels), tile);
             }
         }
+
+        isFloorDrown = true;
     }
 
 
@@ -33,12 +71,14 @@ public class Floor {
                     wall.setPosX(j * imgPixels);
                     wall.setPosY(i * imgPixels);
                     wall.draw(graphics);
+
+                    walls.put(List.of(j * imgPixels, i * imgPixels), wall);
                 }
 
             }
         }
 
-
+        isWallsDrown = true;
     }
 
     public static boolean[][] wallMatrix(int type) {
