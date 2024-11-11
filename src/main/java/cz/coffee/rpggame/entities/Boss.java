@@ -1,4 +1,4 @@
-package cz.coffee.rpggame.models;
+package cz.coffee.rpggame.entities;
 
 import cz.coffee.rpggame.facades.Monster;
 import cz.coffee.rpggame.utils.GameClass;
@@ -7,7 +7,6 @@ import cz.coffee.rpggame.utils.GameClass;
 public class Boss extends Monster {
     public Boss() {
         super();
-        img = "boss";
         if (getLevel() > 5) {
             setMaxHP(getLevel()/1.5 * mIndex * randInt() + randInt());
             setCurrentHP(getMaxHP());
@@ -23,5 +22,6 @@ public class Boss extends Monster {
             setDp(newDP);
             setSp(newSP);
         }
+        setDirection("boss");
     }
 }

@@ -8,7 +8,6 @@ import cz.coffee.rpggame.utils.GameClass;
 
 @GameClass
 public class Monster extends GameEntity implements DefaultEntity {
-    public String img;
     public int mIndex;
 
     private static final int tileSize = GameConfig.TILE_SIZE;

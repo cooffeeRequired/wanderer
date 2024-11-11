@@ -3,7 +3,7 @@ package cz.coffee.rpggame.handlers;
 import cz.coffee.rpggame.components.Board;
 import cz.coffee.rpggame.enums.GameState;
 import cz.coffee.rpggame.facades.GameEngine;
-import cz.coffee.rpggame.models.Hero;
+import cz.coffee.rpggame.entities.Hero;
 import cz.coffee.rpggame.utils.Location;
 
 import java.awt.event.KeyEvent;

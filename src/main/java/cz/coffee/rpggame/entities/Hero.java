@@ -1,4 +1,4 @@
-package cz.coffee.rpggame.models;
+package cz.coffee.rpggame.entities;
 
 
 import cz.coffee.rpggame.facades.GameEntity;

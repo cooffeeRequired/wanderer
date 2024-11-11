@@ -6,7 +6,7 @@ import cz.coffee.rpggame.items.PotionGreen;
 import cz.coffee.rpggame.items.PotionRed;
 import cz.coffee.rpggame.items.Shield;
 import cz.coffee.rpggame.items.Sword;
-import cz.coffee.rpggame.models.*;
+import cz.coffee.rpggame.entities.*;
 import cz.coffee.rpggame.structures.Floor;
 import cz.coffee.rpggame.structures.GameStructure;
 import cz.coffee.rpggame.structures.ZombieEgg;
@@ -45,8 +45,8 @@ public class GameController {
 
         hero.spawn(0, 0, g);
 
-        //this.initializeItems().forEach((item) -> item.spawn(g));
-        //this.initializeStructures().forEach((structure) -> structure.spawn(g));
+        this.initializeItems().forEach((item) -> item.spawn(g));
+        this.initializeStructures().forEach((structure) -> structure.spawn(g));
         this.initializeEntities().forEach((entity) -> entity.spawn(g));
     }
 

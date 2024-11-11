@@ -1,4 +1,4 @@
-package cz.coffee.rpggame.models;
+package cz.coffee.rpggame.entities;
 
 import cz.coffee.rpggame.utils.GameClass;
 
@@ -7,6 +7,6 @@ public class SkeletonWKey extends Skeleton
 {
     public SkeletonWKey() {
         super();
-        img = "skeleton_w";
+        setDirection("skeleton_w");
     }
 }

@@ -1,4 +1,4 @@
-package cz.coffee.rpggame.models;
+package cz.coffee.rpggame.entities;
 
 import cz.coffee.rpggame.facades.Monster;
 import cz.coffee.rpggame.utils.GameClass;
@@ -7,7 +7,7 @@ import cz.coffee.rpggame.utils.GameClass;
 public class Skeleton extends Monster {
     public Skeleton() {
         super();
-        img = "skeleton";
+        setDirection("skeleton");
         if (getLevel() > 5){
             setMaxHP(getLevel()  * mIndex * randInt() * 5);
             setCurrentHP(getMaxHP());

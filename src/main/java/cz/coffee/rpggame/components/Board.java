@@ -4,7 +4,7 @@ import cz.coffee.rpggame.GameConfig;
 import cz.coffee.rpggame.controllers.EntityController;
 import cz.coffee.rpggame.controllers.GameController;
 import cz.coffee.rpggame.enums.GameState;
-import cz.coffee.rpggame.models.Hero;
+import cz.coffee.rpggame.entities.Hero;
 import cz.coffee.rpggame.utils.Console;
 import lombok.Getter;
 

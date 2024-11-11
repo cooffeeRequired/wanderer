@@ -4,7 +4,7 @@ import cz.coffee.rpggame.components.Board;
 import cz.coffee.rpggame.components.FPSCounter;
 import cz.coffee.rpggame.enums.GameState;
 import cz.coffee.rpggame.handlers.KeyEventHandler;
-import cz.coffee.rpggame.models.Hero;
+import cz.coffee.rpggame.entities.Hero;
 import cz.coffee.rpggame.utils.PositionedImage;
 import lombok.Getter;
 
@@ -44,6 +44,7 @@ public class GameEngine {
     }
 
 
+    @SuppressWarnings("unused")
     public void stop() {
         this.gameLoop.interrupt();
     }

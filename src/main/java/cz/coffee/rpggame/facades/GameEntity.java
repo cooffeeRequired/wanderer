@@ -53,7 +53,7 @@ public abstract class GameEntity {
         if (GameEngine.getTiles().containsKey(getDirection())) {
             GameEngine.getTiles().get(getDirection()).setPosX(location.getX()).setPosY(location.getY()).draw(g);
         } else {
-            Console.printlnVia("mv-handler", "DIR: " + getDirection());
+            Console.printlnVia("mv-handler", "DIR: " + getDirection() + " ");
         }
     }
 

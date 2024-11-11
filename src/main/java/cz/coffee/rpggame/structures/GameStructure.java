@@ -1,7 +1,7 @@
 package cz.coffee.rpggame.structures;
 
 import cz.coffee.rpggame.GameConfig;
-import cz.coffee.rpggame.models.Hero;
+import cz.coffee.rpggame.entities.Hero;
 import cz.coffee.rpggame.facades.templates.DefaultEntity;
 import cz.coffee.rpggame.components.Board;
 import cz.coffee.rpggame.facades.GameEngine;
@@ -46,7 +46,9 @@ public abstract class GameStructure implements DefaultEntity {
 
     @Getter @Setter protected boolean spawned = false;
 
+    @SuppressWarnings("unused")
     public abstract boolean spawned();
+
     public void spawn(Graphics g) {
         GameEngine.getTiles()
                 .get(getImg())
@@ -54,7 +56,9 @@ public abstract class GameStructure implements DefaultEntity {
                 .setPosY(getPositionY())
                 .draw(g);
     }
+    @SuppressWarnings("unused")
     public void spawn(int x, int y, Graphics g) {}
+
     public void update(Graphics g) {
         GameEngine.getTiles()
                 .get(getImg())

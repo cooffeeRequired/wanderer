@@ -1,4 +1,4 @@
-package cz.coffee.rpggame.models;
+package cz.coffee.rpggame.entities;
 
 import cz.coffee.rpggame.facades.Monster;
 import cz.coffee.rpggame.utils.GameClass;
@@ -18,6 +18,6 @@ public class Zombie extends Monster {
             setDp((double) mIndex / 2 * randInt()+5);
             setSp(mIndex * randInt()+5);
         }
-        img = "zombie";
+        setDirection("zombie");
     }
 }
