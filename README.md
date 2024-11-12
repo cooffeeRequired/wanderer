@@ -8,7 +8,7 @@
 
 # Wanderer Game Project Enhancements - Developer Guide
 
-*Prepared by: [Your Name], Developer of Wanderer Game Project*
+*Prepared by: Developer of Wanderer Game Project*
 
 ---
 
