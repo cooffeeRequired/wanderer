@@ -34,6 +34,8 @@ public class EntityHandler implements Handler<GameEntity> {
                         if ((g2 = GameEngine.getBoard().fight(monster, (Hero) entity)) != null) {
                             iterator.remove();
 
+                            // use an iterator for the remove current mob from the map
+
                             GameEngine.getTiles().get("boom")
                                     .setPosX(monsterLocation.getX())
                                     .setPosY(monsterLocation.getY())
