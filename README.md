@@ -57,7 +57,7 @@ Once all monsters and the boss are defeated, a final door appears on the map, si
 
 ## Technology Stack
 
-![Java Logo](images/java_logo.png)
+![images/java_logo.png](https://ai-tomatica.cz/wp-content/uploads/2023/11/4373217_java_logo_logos_icon.png)
 
 - **Language**: Java
 - **Libraries**: Java Swing for the UI, custom classes for game logic and rendering.
