@@ -1,6 +1,12 @@
 
 # Wanderer Game 
 
+>[!NOTE]
+>Images will be added!
+
+>[!IMPORTANT]
+>**Projct state**: *WIP*
+
 ---
 
 **Wanderer** is an engaging, tile-based RPG game developed in Java. Players explore procedurally generated maps, encounter and battle monsters, and aim to defeat a final boss to unlock the exit door. This project emphasizes modular design, dependency injection, and optimized performance for a smooth gameplay experience.
@@ -85,7 +91,7 @@ Here are some screenshots showcasing different aspects of the game:
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/yourusername/wanderer-game.git
+    git clone https://github.com/coffeerequired/wanderer-game.git
     ```
 
 2. **Navigate to the project directory**:
