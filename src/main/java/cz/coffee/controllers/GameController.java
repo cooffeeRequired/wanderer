@@ -2,10 +2,7 @@ package cz.coffee.controllers;
 
 import cz.coffee.GameConfig;
 import cz.coffee.components.Board;
-import cz.coffee.entities.Boss;
-import cz.coffee.entities.Hero;
-import cz.coffee.entities.Skeleton;
-import cz.coffee.entities.Zombie;
+import cz.coffee.entities.*;
 import cz.coffee.facades.GameEntity;
 import cz.coffee.facades.GameStructure;
 import cz.coffee.items.PotionGreen;
@@ -14,6 +11,7 @@ import cz.coffee.items.Shield;
 import cz.coffee.items.Sword;
 import cz.coffee.structures.Floor;
 import cz.coffee.structures.ZombieEgg;
+import cz.coffee.utils.Location;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -44,11 +42,11 @@ public record GameController(Hero hero) {
         Floor.drawFloor(g, GameConfig.TILES, GameConfig.TILE_SIZE);
         Floor.drawWalls(g, GameConfig.TILES, GameConfig.TILE_SIZE);
 
-        hero.spawn(0, 0, g);
+        hero.spawn(new Location(0, 0), g);
 
         this.initializeItems().forEach((item) -> {
-            var colm = item.getPositionX() / TILE_SIZE;
-            var row = item.getPositionY() / TILE_SIZE;
+            var colm = item.getLocation().getX() / TILE_SIZE;
+            var row = item.getLocation().getY() / TILE_SIZE;
 
             if (Floor.wallMatrix(Board.LEVEL_MAP)[colm][row]) {
                 item.moveRandomOneTile();
@@ -102,7 +100,7 @@ public record GameController(Hero hero) {
 
     private Deque<GameEntity> initializeEntities() {
         ENTITIES.clear();
-        ENTITIES.add(new Skeleton());
+        ENTITIES.add(new SkeletonWKey());
         ENTITIES.add(new Boss());
 
         for (int i = 0; i < 2; i++) {

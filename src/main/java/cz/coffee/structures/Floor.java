@@ -3,21 +3,22 @@ package cz.coffee.structures;
 import cz.coffee.GameConfig;
 import cz.coffee.components.Board;
 import cz.coffee.facades.GameEngine;
+import cz.coffee.utils.Location;
 import cz.coffee.utils.PositionedImage;
 import lombok.Getter;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 public class Floor {
 
     public static boolean isFloorDrown = false;
     public static boolean isWallsDrown = false;
 
-    @Getter private static WeakHashMap<List<Integer>, PositionedImage> floor = new WeakHashMap<>();
-    @Getter private static WeakHashMap<List<Integer>, PositionedImage> walls = new WeakHashMap<>();
+    @Getter private static HashMap<List<Integer>, PositionedImage> floor = new HashMap<>();
+    @Getter private static HashMap<List<Integer>, PositionedImage> walls = new HashMap<>();
 
 
 
@@ -29,15 +30,16 @@ public class Floor {
         checkExists(graphics, isWallsDrown, walls);
     }
 
-    private static void checkExists(Graphics graphics, boolean exist, WeakHashMap<List<Integer>, PositionedImage> walls) {
+    private static void checkExists(Graphics graphics, boolean exist, HashMap<List<Integer>, PositionedImage> walls) {
         if (exist) {
             for (Map.Entry<List<Integer>, PositionedImage> entry : walls.entrySet()) {
                 var location = entry.getKey();
                 var img = entry.getValue();
 
+                Location newLocation = new Location(location.getFirst(), location.get(1));
+
                 if (!location.isEmpty()) {
-                    img.setPosX(location.getFirst());
-                    img.setPosY(location.get(1));
+                    img.setLocation(newLocation);
                     img.draw(graphics);
                 }
             }
@@ -50,8 +52,8 @@ public class Floor {
         for (int i = 0; i < tiles; i++) {
             for (int j = 0; j < tiles; j++) {
                 PositionedImage tile = GameEngine.getTiles().get("floor");
-                tile.setPosX(j * imgPixels);
-                tile.setPosY(i * imgPixels);
+
+                tile.setLocation(new Location(j * imgPixels, i * imgPixels));
                 tile.draw(graphics);
 
                 floor.put(List.of(j * imgPixels, i * imgPixels), tile);
@@ -68,8 +70,7 @@ public class Floor {
             for (int j = 0; j < tiles; j++) {
                 if (wallMatrix(Board.LEVEL_MAP)[j][i]) {
                     PositionedImage wall = GameEngine.getTiles().get("wall");
-                    wall.setPosX(j * imgPixels);
-                    wall.setPosY(i * imgPixels);
+                    wall.setLocation(new Location(j * imgPixels, i * imgPixels));
                     wall.draw(graphics);
 
                     walls.put(List.of(j * imgPixels, i * imgPixels), wall);

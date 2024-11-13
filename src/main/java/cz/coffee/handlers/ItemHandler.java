@@ -6,11 +6,12 @@ import cz.coffee.items.PotionGreen;
 import cz.coffee.items.PotionRed;
 import cz.coffee.items.Shield;
 import cz.coffee.items.Sword;
+import cz.coffee.utils.Location;
 
 import static cz.coffee.GameConfig.ITEMS;
 import static cz.coffee.controllers.GameController.playSound;
 
-public class ItemHandler implements Handler<GameEntity>{
+public class ItemHandler implements Handler<GameEntity, Location>{
 
     AttributeHandler attributeHandler;
 
@@ -19,14 +20,12 @@ public class ItemHandler implements Handler<GameEntity>{
     }
 
     @Override
-    public boolean handle(GameEntity b) {
-        var eLocation = b.getLocation();
-
+    public boolean handle(GameEntity b, Location moveToLocation) {
         if (b instanceof Hero hero) {
             var iterator = ITEMS.iterator();
             while (iterator.hasNext()) {
                 var e = iterator.next();
-                if (e.getPositionX() == eLocation.getX() && e.getPositionY() == eLocation.getY()) {
+                if (e.getLocation().equals(moveToLocation)) {
                     switch (e) {
                         case PotionRed _ -> {
                             hero.redPotion();

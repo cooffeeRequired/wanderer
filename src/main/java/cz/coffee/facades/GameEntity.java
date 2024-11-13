@@ -56,7 +56,7 @@ public abstract class GameEntity {
 
     public void spawn(Graphics g) {
         if (GameEngine.getTiles().containsKey(getDirection())) {
-            GameEngine.getTiles().get(getDirection()).setPosX(location.getX()).setPosY(location.getY()).draw(g);
+            GameEngine.getTiles().get(getDirection()).setLocation(location).draw(g);
         } else {
             Console.printlnVia("mv-handler", "DIR: " + getDirection() + " ");
         }
@@ -64,12 +64,12 @@ public abstract class GameEntity {
 
     public void update(Graphics g) {
         if (GameEngine.getTiles().containsKey(getDirection())) {
-            GameEngine.getTiles().get(getDirection()).setPosX(location.getX()).setPosY(location.getY()).draw(g);
+            GameEngine.getTiles().get(getDirection()).setLocation(location).draw(g);
         }
     }
-    public void spawn(int x, int y, Graphics g) {
+    public void spawn(Location location, Graphics g) {
         if (GameEngine.getTiles().containsKey(getDirection())) {
-            GameEngine.getTiles().get(getDirection()).setPosX(x).setPosY(y).draw(g);
+            GameEngine.getTiles().get(getDirection()).setLocation(location).draw(g);
         } else {
             Console.printlnVia("mv-handler", "DIR: " + getDirection());
         }

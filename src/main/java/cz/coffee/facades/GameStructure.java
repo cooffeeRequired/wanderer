@@ -5,6 +5,7 @@ import cz.coffee.components.Board;
 import cz.coffee.entities.Hero;
 import cz.coffee.facades.templates.DefaultEntity;
 import cz.coffee.structures.Floor;
+import cz.coffee.utils.Location;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +21,7 @@ import static cz.coffee.components.Board.LEVEL_MAP;
 public abstract class GameStructure implements DefaultEntity {
     String img;
 
-    int positionX;
-    int positionY;
+    @Getter Location location;
     private static final int tileSize = GameConfig.TILE_SIZE;
     private static final int numTiles = GameConfig.TILES;
 
@@ -43,8 +43,7 @@ public abstract class GameStructure implements DefaultEntity {
 
         } while (true);
 
-        positionX = x;
-        positionY = y;
+        this.location = new Location(x, y);
     }
 
 
@@ -56,8 +55,7 @@ public abstract class GameStructure implements DefaultEntity {
     public void spawn(Graphics g) {
         GameEngine.getTiles()
                 .get(getImg())
-                .setPosX(getPositionX())
-                .setPosY(getPositionY())
+                .setLocation(location)
                 .draw(g);
     }
     @SuppressWarnings("unused")
@@ -66,8 +64,7 @@ public abstract class GameStructure implements DefaultEntity {
     public void update(Graphics g) {
         GameEngine.getTiles()
                 .get(getImg())
-                .setPosX(getPositionX())
-                .setPosY(getPositionY())
+                .setLocation(location)
                 .draw(g);
     }
 
@@ -91,8 +88,8 @@ public abstract class GameStructure implements DefaultEntity {
 
     public void moveRandomOneTile() {
         do {
-            int nextX = this.getPositionX();
-            int nextY = this.getPositionY();
+            int nextX = location.getX();
+            int nextY = location.getY();
             int direction = new Random().nextInt(5);
 
             if (direction == 0) {
@@ -109,12 +106,12 @@ public abstract class GameStructure implements DefaultEntity {
             int col = nextX / TILE_SIZE;
             if (row >= 0 && row < TILES && col >= 0 && col < TILES
                     && !Floor.wallMatrix(LEVEL_MAP)[col][row]) {
-                this.setPositionX(nextX);
-                this.setPositionY(nextY);
+                this.setLocation(location);
                 break;
             }
 
         } while (true);
     }
+
 
 }

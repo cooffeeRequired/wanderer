@@ -6,14 +6,15 @@ import cz.coffee.enums.GameState;
 import cz.coffee.facades.GameEngine;
 import cz.coffee.facades.GameEntity;
 import cz.coffee.facades.Monster;
+import cz.coffee.utils.Location;
 
 import java.awt.*;
 
 import static cz.coffee.GameConfig.ENTITIES;
 
-public class EntityHandler implements Handler<GameEntity> {
+public class EntityHandler implements Handler<GameEntity, Location> {
     @Override
-    public boolean handle(GameEntity entity) {
+    public boolean handle(GameEntity entity, Location moveToLocation) {
         var eLocation = entity.getLocation();
 
         var iterator = ENTITIES.iterator();
@@ -22,7 +23,8 @@ public class EntityHandler implements Handler<GameEntity> {
             if (e instanceof Monster monster) {
                 var monsterLocation = monster.getLocation();
 
-                if (monsterLocation.getX() == eLocation.getX() && monsterLocation.getY() == eLocation.getY()) {
+
+                if (monsterLocation.equals(moveToLocation)) {
                     if (monster instanceof Boss) {
                         System.out.println("[EntityHandler] process boss fight");
                         GameEngine.getBoard().changeState(GameState.BOSS_FIGHT);
@@ -37,8 +39,7 @@ public class EntityHandler implements Handler<GameEntity> {
                             // use an iterator for the remove current mob from the map
 
                             GameEngine.getTiles().get("boom")
-                                    .setPosX(monsterLocation.getX())
-                                    .setPosY(monsterLocation.getY())
+                                    .setLocation(monsterLocation)
                                     .draw(g2);
 
                         }

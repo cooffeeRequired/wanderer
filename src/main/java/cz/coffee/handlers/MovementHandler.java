@@ -24,14 +24,17 @@ public class MovementHandler {
 
 
     public void move(GameEntity entity, Location moveToLocation) {
-        boolean canMoveThere = canMoveThere(moveToLocation.getX(), moveToLocation.getY(), entity.getLocation(), entity);
+        boolean canMoveThere = canMoveThere(moveToLocation, entity.getLocation(), entity);
         if (canMoveThere) {
             entity.setLocation(moveToLocation);
             Console.printlnVia("mv-handler", String.format("entity{%s} at X: %d, Y: %d", entity.getUuid(), entity.getLocation().getX(), entity.getLocation().getY()));
         }
     }
 
-    protected boolean canMoveThere(int x, int y, Location location, GameEntity entity) {
+    protected boolean canMoveThere(Location moveToLocation, Location location, GameEntity entity) {
+        int x = moveToLocation.getX();
+        int y = moveToLocation.getY();
+
         int row = y / TILE_SIZE;
         int colm = x / TILE_SIZE;
 
@@ -42,6 +45,6 @@ public class MovementHandler {
         if (Floor.wallMatrix(Board.LEVEL_MAP)[colm][row]) return false;
 
 
-        return this.entityHandler.handle(entity) && this.itemHandler.handle(entity);
+        return this.entityHandler.handle(entity, moveToLocation) && this.itemHandler.handle(entity, moveToLocation);
     }
 }

@@ -1,5 +1,8 @@
 package cz.coffee.utils;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,11 +12,10 @@ import java.io.IOException;
 public class PositionedImage {
 
     BufferedImage image;
-    int posX, posY;
+    @Getter Location location;
 
     public PositionedImage(String filename, int posX, int posY, boolean resource) {
-        this.posX = posX;
-        this.posY = posY;
+        this.location = new Location(posX, posY);
         try {
             if (resource) {
                 var rs = PositionedImage.class.getResource('/' + filename);
@@ -48,19 +50,14 @@ public class PositionedImage {
 
     public void draw(Graphics graphics) {
         if (image != null) {
-            graphics.drawImage(image, posX, posY, null);
+            graphics.drawImage(image, location.getX(), location.getY(), null);
         }
 
     }
 
-    public PositionedImage setPosX(int posX) {
-        this.posX = posX;
+    public PositionedImage setLocation(Location location) {
+        this.location = location;
+
         return this;
     }
-
-    public PositionedImage setPosY(int posY) {
-        this.posY = posY;
-        return this;
-    }
-
 }

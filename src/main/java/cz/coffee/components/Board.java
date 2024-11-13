@@ -99,6 +99,7 @@ public class Board extends JComponent implements Changeable, Runnable{
                 }
                 drawHeroStats(hero, g2);
             }
+            case BOSS_FIGHT -> fightUI.paintComponent(g2);
         }
 
         fpsCounter.paintComponent(graphics);
